@@ -75,6 +75,9 @@ function Nav({ activeSection }) {
   return (
     <nav className="nav-bar" id="nav-bar">
       <div className="nav-inner">
+        <button className="nav-menu-btn" onClick={() => setOpen((o) => !o)}>
+          {open ? "Close" : "Menu"}
+        </button>
         <div className="nav-mono-col" style={{ height: "80px" }}>
           <Monogram />
           <div className={"nav-links" + (open ? " open" : "")} style={{ letterSpacing: "0px", fontSize: "15px", textAlign: "center", height: "70px" }}>
@@ -91,13 +94,6 @@ function Nav({ activeSection }) {
           </div>
         </div>
         <div className="nav-rsvp-col">
-          <button
-            className={"nav-menu-btn" + (open ? " is-open" : "")}
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Menu"
-            aria-expanded={open}>
-            <span className="nav-menu-icon"><span></span><span></span><span></span></span>
-          </button>
           <a href="#rsvp" className="nav-rsvp" onClick={() => setOpen(false)} style={{ borderRadius: "100px", fontWeight: "200", lineHeight: "0.5", borderWidth: "0.5px", borderStyle: "solid", margin: "0px", padding: "13px 20px", letterSpacing: "1px" }}>RSVP</a>
         </div>
       </div>
@@ -247,7 +243,7 @@ function TheBigDay({ data }) {
             </h3>
             <div className="venue-meta" style={{ letterSpacing: "0px", fontSize: "13px" }}>6526 Yount Street · Yountville, CA</div>
             <p className="venue-desc">
-              If you'd like to stay at the venue, <br className="mobile-br" /><a href="https://be.synxis.com/?Hotel=39954&Chain=30212&arrive=2026-10-09&depart=2026-10-11&adult=1&child=0&group=KYUNGTUNG26" target="_blank" rel="noreferrer" className="venue-desc-link">you can book your stay here</a>.
+              If you'd like to stay at the venue, <a href="https://be.synxis.com/?Hotel=39954&Chain=30212&arrive=2026-10-09&depart=2026-10-11&adult=1&child=0&group=KYUNGTUNG26" target="_blank" rel="noreferrer" className="venue-desc-link">you can book your stay here</a>.
             </p>
           </figcaption>
           <a href="https://www.theestateyountville.com/" target="_blank" rel="noreferrer" className="venue-img-wrap">
@@ -442,7 +438,7 @@ personally visited and loved over the years!
         </div>
 
         <div style={{ textAlign: "center", marginTop: 60 }}>
-          <p className="body" style={{ maxWidth: 620, margin: "0 auto 24px", fontFamily: "\"PP Editorial New\"", fontStyle: "italic", fontWeight: "300", width: "800px", lineHeight: "1.5", fontSize: "25px", color: "rgb(0, 0, 0)" }}>For more suggestions, feel free to reach out to Mia at jmink0412@gmail.com!
+          <p className="body" style={{ maxWidth: 620, margin: "0 auto 24px", fontFamily: "\"PP Editorial New\"", fontStyle: "italic", fontWeight: "300", width: "800px", lineHeight: "1.5", fontSize: "25px", color: "rgb(0, 0, 0)" }}>For more suggestions, feel free to reach out to Mia at miaandjoewedding.com!
 
 
 
@@ -472,7 +468,7 @@ a little longer, we've created a honeymoon fund :)</p>
 
             </div>
             <div style={{ height: 16 }} />
-            <h3 style={{ color: "var(--bg-cream)", fontStyle: "normal", margin: "0 0 18px 0", lineHeight: 1.2, fontFamily: "\"PP Editorial New\"", fontSize: "15px", fontWeight: "200" }}>Mia and Joe's<br />Honeymoon Fund</h3>
+            <h3 style={{ color: "var(--bg-cream)", fontStyle: "normal", margin: "0 0 28px 0", lineHeight: 1.2, fontFamily: "\"PP Editorial New\"", fontSize: "30px", fontWeight: "200" }}>Mia and Joe's<br />Honeymoon Fund</h3>
             <a className="btn" href="https://www.honeyfund.com/site/Mia-Joe-10-10-2026" target="_blank" rel="noreferrer" style={{ letterSpacing: "0px" }}>
               Visit Honeymoon Fund
             </a>
@@ -499,7 +495,7 @@ function FAQs({ data }) {
     <section id="faqs" data-screen-label="FAQs">
       <div className="container-narrow">
         <SectionDisplayTitle>FAQs</SectionDisplayTitle>
-        <p style={{ textAlign: "center", fontStyle: "italic", maxWidth: 540, margin: "0 auto 56px", fontFamily: "\"PP Editorial New\"", fontWeight: "300", fontSize: "25px", lineHeight: "1.5", color: "rgb(0, 0, 0)" }}>If something isn't covered here, <br className="mobile-br" />please reach out for help!
+        <p style={{ textAlign: "center", fontStyle: "italic", maxWidth: 540, margin: "0 auto 56px", fontFamily: "\"PP Editorial New\"", fontWeight: "300", fontSize: "25px", lineHeight: "1.5", color: "rgb(0, 0, 0)" }}>If something isn't covered here, please reach out for help!
 
         </p>
         
@@ -604,7 +600,7 @@ function RSVP() {
     <section id="rsvp" className="rsvp-section" data-screen-label="RSVP">
       <div className="container-narrow">
         <SectionDisplayTitle>RSVP</SectionDisplayTitle>
-        <p style={{ textAlign: "center", fontStyle: "italic", maxWidth: 540, margin: "0 auto 56px", lineHeight: 1.6, fontSize: "22px", fontWeight: "300", fontFamily: "\"PP Editorial New\"", color: "rgb(0, 0, 0)" }}>Please RSVP by August 31st. <br className="mobile-br" />We'd love to hear from you soon.
+        <p style={{ textAlign: "center", fontStyle: "italic", maxWidth: 540, margin: "0 auto 56px", lineHeight: 1.6, fontSize: "22px", fontWeight: "300", fontFamily: "\"PP Editorial New\"", color: "rgb(0, 0, 0)" }}>Please RSVP by August 31st. We'd love to hear from you soon.
 
         </p>
         
@@ -693,7 +689,7 @@ function RSVP() {
                 type="text"
                 value={form.dietary}
                 onChange={(e) => update("dietary", e.target.value)}
-                placeholder="Let us know if anything — and please add your guest's meal preference if you have one." />
+                placeholder="Let us know if anything" />
               
               </div>
 
