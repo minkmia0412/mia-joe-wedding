@@ -566,7 +566,7 @@
     .nav-links.open {
       display: flex;
       position: absolute;
-      top: calc(100% - 13px);
+      top: calc(100% - 7px);
       left: 16px;
       right: auto;
       width: auto;
@@ -1892,7 +1892,7 @@
     .container, .container-narrow { padding: 0 35px; }
     section { padding: 72px 0; }
     .hero { padding: 120px 35px 80px; }
-    .section-display-title { font-size: 24px !important; margin-bottom: 24px; }
+    .section-display-title { font-size: 29px !important; margin-bottom: 24px; }
 
     /* nav monogram + hero date down-scaled */
     .monogram-mini-img { height: 23px !important; }
@@ -1901,13 +1901,14 @@
     #things .body { font-size: 20px !important; }
     .nav-links.open { padding: 11px 14px !important; gap: 9px !important; left: 16px !important; right: auto !important; }
 
-    /* body text scaled to ~0.8x on mobile */
-    .story-body { font-size: 16px !important; }
-    .travel-block, .travel-block p { font-size: 16px !important; }
-    #things > .container > p { font-size: 16px !important; }
+    /* body text unified to hotel-card body size (13.5px) on mobile */
+    .story-body { font-size: 13.5px !important; }
+    .travel-block, .travel-block p { font-size: 13.5px !important; }
+    #things > .container > p { font-size: 13.5px !important; }
     .venue-desc { font-size: 14px !important; }
-    .registry-section .body, .rsvp .body, .body-lg { font-size: 16px !important; }
-    .tl-desc, .tl-interlude-text, .place-desc { font-size: 12px !important; }
+    .rsvp .body, .body-lg { font-size: 16px !important; }
+    .registry-section .body, .registry-section .body-lg { font-size: 13.5px !important; }
+    .tl-desc, .tl-interlude-text, .place-desc { font-size: 13.5px !important; }
     .tl-title { font-size: 19px !important; }
     .place-name { font-size: 15px !important; }
 
@@ -1918,7 +1919,7 @@
     #faqs .container-narrow > p { font-size: 20px !important; }
     #rsvp .container-narrow > p { font-size: 18px !important; }
     .footer-headline { font-size: clamp(28px, 7vw, 42px) !important; }
-    .attire-text, .attire-list li { font-size: 16px !important; }
+    .attire-text, .attire-list li { font-size: 13.5px !important; }
 
     /* release desktop-fixed inline widths so nothing overflows */
     .story-body,
