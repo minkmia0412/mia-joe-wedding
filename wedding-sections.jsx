@@ -472,7 +472,7 @@ a little longer, we've created a honeymoon fund :)</p>
 
             </div>
             <div style={{ height: 16 }} />
-            <h3 style={{ color: "var(--bg-cream)", fontStyle: "normal", margin: "0 0 18px 0", lineHeight: 1.2, fontFamily: "\"PP Editorial New\"", fontSize: "15px", fontWeight: "200" }}>Mia and Joe's<br />Honeymoon Fund</h3>
+            <h3 className="registry-card-title" style={{ color: "var(--bg-cream)", fontStyle: "normal", margin: "0 0 28px 0", lineHeight: 1.2, fontFamily: "\"PP Editorial New\"", fontSize: "30px", fontWeight: "200" }}>Mia and Joe's<br />Honeymoon Fund</h3>
             <a className="btn" href="https://www.honeyfund.com/site/Mia-Joe-10-10-2026" target="_blank" rel="noreferrer" style={{ letterSpacing: "0px" }}>
               Visit Honeymoon Fund
             </a>
@@ -542,6 +542,15 @@ function RSVP() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 820px)");
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
 
   const update = (key, v) => setForm((f) => ({ ...f, [key]: v }));
 
@@ -688,12 +697,12 @@ function RSVP() {
 
               <div className="form-row">
                 <label htmlFor="rsvp-diet" style={{ padding: "27px 0px 0px", letterSpacing: "0px" }}>Dietary Restrictions or Allergies</label>
-                <input
+                <textarea
                 id="rsvp-diet"
-                type="text"
+                rows={2}
                 value={form.dietary}
                 onChange={(e) => update("dietary", e.target.value)}
-                placeholder="Let us know if anything — and please add your guest's meal preference if you have one." />
+                placeholder={isMobile ? "Let us know if anything — and please add\nyour guest's meal preference if you have one." : "Let us know if anything — and please add your guest's meal preference if you have one."} />
               
               </div>
 
