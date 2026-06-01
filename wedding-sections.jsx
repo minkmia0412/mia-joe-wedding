@@ -146,11 +146,12 @@ function OurStory() {
       <div className="container">
         <SectionDisplayTitle>Our Story</SectionDisplayTitle>
 
-        <div className="story-body" style={{ fontSize: "20px", width: "700px", maxWidth: "100%", lineHeight: "1.3", color: "#3D3C3A", fontWeight: "300" }}>
+        <div className="story-body" style={{ fontSize: "20px", maxWidth: "100%", lineHeight: "1.3", color: "#3D3C3A", fontWeight: "300", width: "780px" }}>
           <p>We first met on July 7th last year, on Chilseok, the Korean legend of two lovers who reunite across the Milky Way. Mia brought cherries and crackers, and Joe brought his favorite Napa Cabernet, Duckhorn. We only found out later that Duckhorn is named after the mandarin duck, which in Korea is a symbol of devoted, lifelong love.</p>
           <p>The coincidences didn't stop there. A few weeks later, Joe showed up to help Mia move wearing a cap with "412" on it. It's Pittsburgh's area code, but it's also Mia's birthday, April 12th. It started to feel less like coincidence and more like we were exactly where we were meant to be.</p>
           <p>After that came cooking at home, slow afternoons on the golf course, weekend trips to Lake Erie, and bigger adventures in Iceland and Taiwan. Looking back, none of it was ever really small.</p>
-          <p>On October 10th, 2026, we'll begin our next chapter in Napa Valley. We come from different worlds, and we want to keep honoring both as we build something that's ours. We'd love for you to be there.</p>
+          <p>On October 10th, 2026, we'll begin our next chapter in Napa Valley. We come from different worlds, and we want to keep honoring both as we build something that's ours.
+We'd love for you to be there.</p>
         </div>
         <div className="story-film">
           <div className="film-strip-h film-strip-horiz">
@@ -172,7 +173,6 @@ function OurStory() {
         </div>
       </div>
     </section>);
-
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -258,7 +258,7 @@ function TheBigDay({ data }) {
             if (row.kind === "interlude") {
               const interludeContent =
               <div className="tl-side" style={{ ...{ padding: row.side === "left" ? "0px 28px 0px 0px" : "0px 0px 0px 28px", textAlign: row.side === "left" ? "right" : "left" }, padding: "0px 0px 0px 20px" }}>
-                  <div className="tl-interlude-label" style={{ letterSpacing: "0px", fontSize: "13px" }}>5 Minute Walk to The Social</div>
+                  <div className="tl-interlude-label" style={{ fontSize: "13px", letterSpacing: "0px" }}>5 Minute Walk to The Social</div>
                   <p className="tl-interlude-text" style={{ marginLeft: row.side === "left" ? "auto" : "0", marginRight: row.side === "left" ? "0" : "auto", color: "rgb(111, 111, 111)", fontSize: "17px", width: "284px" }}>{row.item.interlude}</p>
                 </div>;
               return (
@@ -438,14 +438,11 @@ personally visited and loved over the years!
         </div>
 
         <div style={{ textAlign: "center", marginTop: 60 }}>
-          <p className="body" style={{ maxWidth: 620, margin: "0 auto 24px", fontFamily: "\"PP Editorial New\"", fontStyle: "italic", fontWeight: "300", width: "800px", lineHeight: "1.5", fontSize: "25px", color: "rgb(0, 0, 0)" }}>For more suggestions, feel free to reach out to Mia at jmink0412@gmail.com!
+          <p className="body" style={{ maxWidth: 620, margin: "0 auto 24px", fontFamily: "\"PP Editorial New\"", fontStyle: "italic", fontWeight: "300", width: "800px", lineHeight: "1.5", fontSize: "25px", color: "rgb(0, 0, 0)" }}>For more suggestions, feel free to reach out to Mia at miaandjoewedding.com!
 
 
 
           </p>
-          <a className="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=jmink0412@gmail.com" target="_blank" rel="noreferrer" style={{ letterSpacing: "0px", backgroundColor: "rgb(252, 247, 243)" }}>
-            Email Mia
-          </a>
         </div>
       </div>
     </section>);
@@ -672,7 +669,7 @@ function RSVP() {
               <div className="form-row" style={{ gap: "8px" }}>
                 <label style={{ letterSpacing: "0px", padding: "0px 0px 7px" }}>Meal Preference</label>
                 <div className="pill-group" style={{ flexWrap: "wrap" }}>
-                  {["Meat", "Fish", "Vegetarian", "Vegan"].map((m) =>
+                  {["Beef", "Fish", "Vegetarian", "Vegan"].map((m) =>
                 <button
                   key={m}
                   type="button"
@@ -736,7 +733,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-headline" style={{ fontFamily: "\"PP Editorial New\"", fontStyle: "italic", lineHeight: "1.1", fontWeight: "300", padding: "0px", textAlign: "center" }}>We can't wait to see you!</div>
       <img src="uploads/Heart.png" alt="" className="footer-hearts" style={{ margin: "26px auto -60px" }} />
-      <div className="footer-credit" style={{ letterSpacing: "0px", fontSize: "14px" }}>Made with love · jmink0412@gmail.com · +1.412.512.0863</div>
+      <div className="footer-credit" style={{ letterSpacing: "0px", fontSize: "14px" }}>Made with love · miaandjoewedding.com</div>
     </footer>);
 
 }
@@ -813,6 +810,35 @@ function ScrollTopButton() {
 
 }
 
+function InvitationIntro() {
+  const [phase, setPhase] = useState("show"); // show -> fade -> done
+  useEffect(() => {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setPhase("done");
+      return;
+    }
+    document.body.style.overflow = "hidden";
+    const t1 = setTimeout(() => setPhase("fade"), 2000);
+    const t2 = setTimeout(() => {
+      setPhase("done");
+      document.body.style.overflow = "";
+    }, 3000);
+    return () => {
+      clearTimeout(t1);clearTimeout(t2);
+      document.body.style.overflow = "";
+    };
+  }, []);
+  if (phase === "done") return null;
+  return (
+    <div className={"invite-intro" + (phase === "fade" ? " fade" : "")} aria-hidden="true">
+      <div className="invite-caption">You're Invited</div>
+      <div className="invite-card-wrap">
+        <img src="uploads/invite-card.jpg" alt="" className="invite-card-img" />
+      </div>
+    </div>);
+
+}
+
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const active = useScrollSpy(["story", "bigday", "travel", "things", "registry", "faqs", "rsvp"]);
@@ -842,6 +868,7 @@ function App() {
       </main>
       <Footer />
       <ScrollTopButton />
+      <InvitationIntro />
 
 
       <TweaksPanel title="Tweaks">
