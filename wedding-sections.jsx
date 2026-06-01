@@ -39,6 +39,15 @@ function SectionHeader({ eyebrow, title, subtitle, color }) {
 
 }
 
+function renderDesc(text) {
+  return String(text).split(/(\n|\{d\}|\{m\})/g).map((seg, i) => {
+    if (seg === "\n") return <br key={i} />;
+    if (seg === "{d}") return <br key={i} className="desktop-br" />;
+    if (seg === "{m}") return <br key={i} className="mobile-br" />;
+    return seg;
+  });
+}
+
 function SectionDisplayTitle({ children }) {
   return <h2 className="section-display-title" style={{ letterSpacing: "-1px", fontSize: "50px", fontWeight: "400", fontFamily: "\"PP Editorial New\"", margin: "0px 0px 41px", color: "rgb(5, 5, 5)" }}>{children}</h2>;
 }
@@ -295,7 +304,7 @@ function TheBigDay({ data }) {
                     <div className="tl-side event" style={{ borderWidth: "0px", borderStyle: "solid", textAlign: "right", margin: "0px", padding: "0px 20px 0px 0px", width: "303px" }}>
                       <h3 className="tl-title" style={{ fontFamily: "\"PP Editorial New\"", fontWeight: "400", fontSize: "22px", margin: "0px 0px 7px" }}>{item.title}</h3>
                       <div className="tl-meta" style={{ letterSpacing: "0px", fontSize: "13px", margin: "0px 0px 8px" }}>{item.time} / {item.loc}</div>
-                      <p className="tl-desc" style={{ marginLeft: "auto", color: "rgb(111, 111, 111)", fontSize: "17px", margin: "0px", width: "286px" }}>{item.desc}</p>
+                      <p className="tl-desc" style={{ marginLeft: "auto", color: "rgb(111, 111, 111)", fontSize: "17px", margin: "0px", width: "286px" }}>{renderDesc(item.desc)}</p>
                     </div>
                     {illo}
                   </> :
@@ -305,7 +314,7 @@ function TheBigDay({ data }) {
                     <div className="tl-side event" style={{ textAlign: "left", margin: "0px", padding: "0px 0px 0px 20px" }}>
                       <h3 className="tl-title" style={{ fontFamily: "\"PP Editorial New\"", fontWeight: "400", fontSize: "22px", margin: "0px 0px 7px" }}>{item.title}</h3>
                       <div className="tl-meta" style={{ letterSpacing: "0px", margin: "0px 0px 8px", fontSize: "13px" }}>{item.time} / {item.loc}</div>
-                      <p className="tl-desc" style={{ color: "rgb(111, 111, 111)", fontSize: "17px", margin: "0px" }}>{item.desc}</p>
+                      <p className="tl-desc" style={{ color: "rgb(111, 111, 111)", fontSize: "17px", margin: "0px" }}>{renderDesc(item.desc)}</p>
                     </div>
                   </>
                 }
@@ -317,8 +326,7 @@ function TheBigDay({ data }) {
         <div style={{ marginTop: 100 }}>
           <SectionHeader title="Attire" />
           <div className="attire-wrap" style={{ width: "620px" }}>
-            <p className="attire-text" style={{ fontSize: "20px" }}>Cocktail or garden party attire, where timeless elegance meets the romance of<br />
-an autumn evening in Napa Valley.
+            <p className="attire-text" style={{ fontSize: "20px" }}>Cocktail or garden party attire, where timeless elegance meets the romance of<br className="desktop-br" />an autumn evening<br className="mobile-br" /> in Napa Valley.
 
             </p>
             <ul className="attire-list">
@@ -343,7 +351,7 @@ function HotelCard({ hotel }) {
     <Tag className="hotel-card" {...linkProps}>
       <h3 className="hotel-name" style={{ fontFamily: "\"PP Editorial New\"", color: "rgb(5, 5, 5)", margin: "10px 0px 4px" }}>{hotel.name}</h3>
       <div className="hotel-meta" style={{ letterSpacing: "0px" }}>Google Review {hotel.stars} / {hotel.distance} from venue</div>
-      <p className="hotel-desc" style={{ fontSize: "17px", color: "rgb(111, 111, 111)" }}>{hotel.desc}</p>
+      <p className="hotel-desc" style={{ fontSize: "17px", color: "rgb(111, 111, 111)" }}>{renderDesc(hotel.desc)}</p>
       {hotel.img ?
       <div className="hotel-img-wrap">
           <img src={hotel.img} alt={hotel.name} className="hotel-img-photo" />

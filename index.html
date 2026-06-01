@@ -1901,25 +1901,26 @@
     #things .body { font-size: 20px !important; }
     .nav-links.open { padding: 11px 14px !important; gap: 9px !important; left: 16px !important; right: auto !important; }
 
-    /* body text unified to hotel-card body size (13.5px) on mobile */
-    .story-body { font-size: 13.5px !important; }
-    .travel-block, .travel-block p { font-size: 13.5px !important; }
-    #things > .container > p { font-size: 13.5px !important; }
-    .venue-desc { font-size: 14px !important; }
+    /* body text bumped on mobile for readability (≈ hotel-card body, tighter leading) */
+    .story-body { font-size: 15px !important; line-height: 1.45 !important; }
+    .travel-block, .travel-block p { font-size: 15px !important; line-height: 1.45 !important; }
+    #things > .container > p { font-size: 15px !important; }
+    .venue-desc { font-size: 15px !important; }
     .rsvp .body, .body-lg { font-size: 16px !important; }
-    .registry-section .body, .registry-section .body-lg { font-size: 13.5px !important; }
-    .tl-desc, .tl-interlude-text, .place-desc { font-size: 13.5px !important; }
+    .registry-section .body, .registry-section .body-lg { font-size: 15px !important; }
+    .tl-desc, .tl-interlude-text, .place-desc { font-size: 15px !important; }
     .tl-title { font-size: 19px !important; }
     .place-name { font-size: 15px !important; }
+    .attire-text, .attire-list li { font-size: 15px !important; }
 
     /* subheaders 0.8x + address 0.8x + attire body = story body */
-    .venue-name-link { font-size: 19px !important; }
+    .venue-name-link { font-size: 13px !important; }
     .mobile-br { display: inline !important; }
     .venue-meta { font-size: 10px !important; }
     #faqs .container-narrow > p { font-size: 20px !important; }
     #rsvp .container-narrow > p { font-size: 18px !important; }
     .footer-headline { font-size: clamp(28px, 7vw, 42px) !important; }
-    .attire-text, .attire-list li { font-size: 13.5px !important; }
+    .attire-text, .attire-list li { font-size: 15px !important; }
 
     /* release desktop-fixed inline widths so nothing overflows */
     .story-body,
@@ -1934,8 +1935,10 @@
     }
 
     /* manual desktop line-breaks flow naturally on mobile */
-    .travel-block br,
-    .attire-text br { display: none; }
+    .travel-block br { display: none; }
+    .desktop-br { display: none !important; }
+    .tl-desc { width: auto !important; }
+    .section-header:has(+ .venue-intro) .section-header-label { font-size: 7px !important; }
     .tl-desc, .tl-interlude-text { white-space: normal !important; }
     .place-desc { white-space: normal !important; }
 
@@ -2072,7 +2075,7 @@
     {
       "time": "5:00 — 5:30 PM",
       "title": "Ceremony",
-      "desc": "Our ceremony will take place among\nthe vineyards, surrounded by\nthe beauty of Napa Valley.",
+      "desc": "Our ceremony will take place among\nthe vineyards, surrounded by{d} the beauty{m} of Napa Valley.",
       "loc": "The Vineyard"
     },
     {
@@ -2134,7 +2137,7 @@
       "img": "uploads/R-Inn-Napa-1.png",
       "stars": "4.7",
       "distance": "~15 min drive",
-      "desc": "A stylish adults-only boutique inn in the heart of\ndowntown Napa, converted from a historic building.\nWalkable to restaurants, tasting rooms, and nightlife."
+      "desc": "A stylish adults-only boutique inn in the heart of\ndowntown Napa, converted from a historic building.\nWalkable to restaurants, {m}tasting rooms, and nightlife."
     }
   ],
   "yountville_food": [
