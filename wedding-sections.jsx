@@ -41,8 +41,8 @@ function SectionHeader({ eyebrow, title, subtitle, color }) {
 
 function renderDesc(text) {
   return String(text).split(/(\n|\{d\}|\{m\})/g).map((seg, i) => {
-    if (seg === "\n") return <br key={i} />;
-    if (seg === "{d}") return <br key={i} className="desktop-br" />;
+    if (seg === "\n" || seg === "{d}")
+      return <React.Fragment key={i}><br className="desktop-br" />{" "}</React.Fragment>;
     if (seg === "{m}") return <br key={i} className="mobile-br" />;
     return seg;
   });
@@ -303,7 +303,7 @@ function TheBigDay({ data }) {
                 <>
                     <div className="tl-side event" style={{ borderWidth: "0px", borderStyle: "solid", textAlign: "right", margin: "0px", padding: "0px 20px 0px 0px", width: "303px" }}>
                       <h3 className="tl-title" style={{ fontFamily: "\"PP Editorial New\"", fontWeight: "400", fontSize: "22px", margin: "0px 0px 7px" }}>{item.title}</h3>
-                      <div className="tl-meta" style={{ letterSpacing: "0px", fontSize: "13px", margin: "0px 0px 8px" }}>{item.time} / {item.loc}</div>
+                      <div className="tl-meta" style={{ letterSpacing: "0px", fontSize: "13px", margin: "0px 0px 8px" }}>{item.time} / <span style={{ whiteSpace: "nowrap" }}>{item.loc}</span></div>
                       <p className="tl-desc" style={{ marginLeft: "auto", color: "rgb(111, 111, 111)", fontSize: "17px", margin: "0px", width: "286px" }}>{renderDesc(item.desc)}</p>
                     </div>
                     {illo}
@@ -313,7 +313,7 @@ function TheBigDay({ data }) {
                     {illo}
                     <div className="tl-side event" style={{ textAlign: "left", margin: "0px", padding: "0px 0px 0px 20px" }}>
                       <h3 className="tl-title" style={{ fontFamily: "\"PP Editorial New\"", fontWeight: "400", fontSize: "22px", margin: "0px 0px 7px" }}>{item.title}</h3>
-                      <div className="tl-meta" style={{ letterSpacing: "0px", margin: "0px 0px 8px", fontSize: "13px" }}>{item.time} / {item.loc}</div>
+                      <div className="tl-meta" style={{ letterSpacing: "0px", margin: "0px 0px 8px", fontSize: "13px" }}>{item.time} / <span style={{ whiteSpace: "nowrap" }}>{item.loc}</span></div>
                       <p className="tl-desc" style={{ color: "rgb(111, 111, 111)", fontSize: "17px", margin: "0px" }}>{renderDesc(item.desc)}</p>
                     </div>
                   </>
@@ -326,7 +326,7 @@ function TheBigDay({ data }) {
         <div style={{ marginTop: 100 }}>
           <SectionHeader title="Attire" />
           <div className="attire-wrap" style={{ width: "620px" }}>
-            <p className="attire-text" style={{ fontSize: "20px" }}>Cocktail or garden party attire, where timeless elegance meets the romance of<br className="desktop-br" />an autumn evening<br className="mobile-br" /> in Napa Valley.
+            <p className="attire-text" style={{ fontSize: "20px" }}>Cocktail or garden party attire, where timeless elegance meets the romance of<br className="desktop-br" /> an autumn evening in Napa Valley.
 
             </p>
             <ul className="attire-list">
