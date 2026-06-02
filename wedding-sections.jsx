@@ -28,7 +28,7 @@ function Monogram({ size = "mini", color }) {
 function SectionHeader({ eyebrow, title, subtitle, color }) {
   return (
     <div className="section-header">
-      <div className="section-header-label" style={{ ...(color ? { color } : null), fontWeight: "400", fontSize: "10px", textAlign: "center" }}>{title}</div>
+      <div className="section-header-label" style={{ ...(color ? { color } : null), fontWeight: "400", textAlign: "center", fontSize: "10px" }}>{title}</div>
       <div className="section-header-rule" style={{ ...(color ? { background: color } : null), height: "1px", width: "8px" }} />
       {subtitle &&
       <div style={{ marginTop: 18, fontFamily: "var(--f-serif)", fontStyle: "italic", color: "var(--ink-1)", maxWidth: 540, marginLeft: "auto", marginRight: "auto", fontSize: "20px", lineHeight: "1.3" }}>
@@ -42,7 +42,7 @@ function SectionHeader({ eyebrow, title, subtitle, color }) {
 function renderDesc(text) {
   return String(text).split(/(\n|\{d\}|\{m\})/g).map((seg, i) => {
     if (seg === "\n" || seg === "{d}")
-      return <React.Fragment key={i}><br className="desktop-br" />{" "}</React.Fragment>;
+    return <React.Fragment key={i}><br className="desktop-br" />{" "}</React.Fragment>;
     if (seg === "{m}") return <br key={i} className="mobile-br" />;
     return seg;
   });
