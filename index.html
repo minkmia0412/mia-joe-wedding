@@ -1893,6 +1893,14 @@
     section { padding: 72px 0; }
     .hero { padding: 120px 35px 80px; }
     .section-display-title { font-size: 29px !important; margin-bottom: 24px; }
+    /* tighten title→body gap to 0.7x on these sections */
+    #story .section-display-title,
+    #travel .section-display-title,
+    #things .section-display-title,
+    #registry .section-display-title,
+    #faqs .section-display-title,
+    #rsvp .section-display-title { margin-bottom: 17px !important; }
+    #registry .body-lg { margin-top: 22px !important; }
 
     /* nav monogram + hero date down-scaled */
     .monogram-mini-img { height: 23px !important; }
@@ -1901,26 +1909,33 @@
     #things .body { font-size: 20px !important; }
     .nav-links.open { padding: 11px 14px !important; gap: 9px !important; left: 16px !important; right: auto !important; }
 
-    /* body text bumped on mobile for readability (≈ hotel-card body, tighter leading) */
-    .story-body { font-size: 15px !important; line-height: 1.45 !important; }
-    .travel-block, .travel-block p { font-size: 15px !important; line-height: 1.45 !important; }
-    #things > .container > p { font-size: 15px !important; }
-    .venue-desc { font-size: 15px !important; }
-    .rsvp .body, .body-lg { font-size: 16px !important; }
-    .registry-section .body, .registry-section .body-lg { font-size: 15px !important; }
-    .tl-desc, .tl-interlude-text, .place-desc { font-size: 15px !important; }
+    /* body text matched to hotel-card body size (17px) on mobile */
+    .story-body { font-size: 17px !important; line-height: 1.45 !important; }
+    .travel-block, .travel-block p { font-size: 17px !important; line-height: 1.45 !important; }
+    #things > .container > p { font-size: 17px !important; }
+    .venue-desc { font-size: 17px !important; }
+    .rsvp .body, .body-lg { font-size: 17px !important; }
+    .registry-section .body, .registry-section .body-lg { font-size: 17px !important; }
+    .registry-section { padding-top: 80px !important; padding-bottom: 80px !important; }
+    /* unify body line-height (1.45) + inter-paragraph gaps across sections */
+    #things > .container > p { line-height: 1.45 !important; margin-bottom: 0.8em !important; }
+    #registry .body-lg { line-height: 1.45 !important; }
+    .place-desc { line-height: 1.45 !important; }
+    #faqs .container-narrow > p { line-height: 1.5 !important; }
+    #rsvp .container-narrow > p { line-height: 1.5 !important; }
+    .tl-desc, .tl-interlude-text, .place-desc { font-size: 17px !important; }
     .tl-title { font-size: 19px !important; }
     .place-name { font-size: 15px !important; }
-    .attire-text, .attire-list li { font-size: 15px !important; }
+    .attire-text, .attire-list li { font-size: 17px !important; }
 
     /* subheaders 0.8x + address 0.8x + attire body = story body */
-    .venue-name-link { font-size: 13px !important; }
+    .venue-name-link { font-size: 19px !important; }
     .mobile-br { display: inline !important; }
     .venue-meta { font-size: 10px !important; }
     #faqs .container-narrow > p { font-size: 20px !important; }
     #rsvp .container-narrow > p { font-size: 18px !important; }
     .footer-headline { font-size: clamp(28px, 7vw, 42px) !important; }
-    .attire-text, .attire-list li { font-size: 15px !important; }
+    .attire-text, .attire-list li { font-size: 17px !important; }
 
     /* release desktop-fixed inline widths so nothing overflows */
     .story-body,
@@ -2024,8 +2039,8 @@
 
     /* FAQ text 0.8x */
     .faq-btn { font-size: 17px !important; gap: 18px !important; }
-    .faq-body-inner { font-size: 14px !important; padding: 0 24px 24px 48px !important; }
-    .faq-item.open .faq-body { max-height: 600px; }
+    .faq-body-inner { font-size: 17px !important; line-height: 1.45 !important; padding: 0 24px 24px 48px !important; }
+    .faq-item.open .faq-body { max-height: 800px; }
 
     /* number stepper: balanced buttons */
     .number-stepper { width: 150px !important; display: flex !important; }
