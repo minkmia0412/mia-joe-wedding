@@ -1034,21 +1034,21 @@ const WEDDING_DATA_KO = {
       "id": "cocktail",
       "time": "5:30 — 6:30 PM",
       "title": "칵테일 아워",
-      "desc": "만찬 전, 카나페와 칵테일,\n그리고 즐거운 대화를 {m}나눠 주세요.",
+      "desc": "만찬 전, 카나페와 칵테일,\n그리고 즐거운 대화를 나눠 주세요.",
       "loc": "The Social Courtyard"
     },
     {
       "id": "dinner",
       "time": "6:30 — 8:30 PM",
       "title": "만찬",
-      "desc": "라이브 음악과 함께하는 코스 만찬, 케이크 커팅,\n{m}그리고 진심 어린 축사가 이어집니다.",
+      "desc": "라이브 음악과 함께하는 코스 만찬, 케이크 커팅,\n그리고 진심 어린 축사가 이어집니다.",
       "loc": "Lawn"
     },
     {
       "id": "afterparty",
       "time": "8:30 — 10:00 PM",
       "title": "애프터 파티",
-      "desc": "음악과 춤, 그리고 한 잔의\n술과 함께 축하를 {m}이어가요.",
+      "desc": "음악과 춤, 그리고 한 잔의\n술과 함께 축하를 이어가요.",
       "loc": "The Social Indoor"
     }
   ],
