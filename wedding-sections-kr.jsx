@@ -109,7 +109,7 @@ const STRINGS = {
     registryButton: "신혼여행 기금 보러 가기",
     faqIntroPre: "여기에 없는 내용이 있다면, ", faqIntroPost: "언제든 편하게 문의해 주세요!",
     rsvpThankYouEyebrow: "감사합니다",
-    rsvpThankYouName: (name) => `${name}님, 감사합니다.`,
+    rsvpThankYouName: (name) => `${name}님,\n감사합니다.`,
     rsvpYes: "참석 회신을 잘 받았습니다. 10월 10일, 여러분과 함께 축하할 날을 손꼽아 기다리겠습니다.",
     rsvpNo: "알려주셔서 감사합니다. 10월 10일 함께하지 못해 아쉽지만, 마음 깊이 감사드립니다.",
     nameFallback: "소중한 분",
@@ -845,7 +845,7 @@ function RSVP() {
         <div className="container-narrow">
           <SectionHeader eyebrow={t.rsvpThankYouEyebrow} title="RSVP" />
           <div className="rsvp-success" style={{ backgroundColor: "rgb(240, 234, 216)" }}>
-            <div className="display-2" style={{ fontStyle: "italic", marginBottom: 16, fontFamily: "\"PP Editorial New\"", fontWeight: "300", color: "rgb(57, 24, 23)", lineHeight: "1.15", letterSpacing: "-3px" }}>
+            <div className="display-2" style={{ whiteSpace: "pre-line", fontStyle: "italic", marginBottom: 16, fontFamily: "\"PP Editorial New\"", fontWeight: "300", color: "rgb(57, 24, 23)", lineHeight: "1.15", letterSpacing: "-3px" }}>
               {t.rsvpThankYouName(form.name.split(" ")[0] || t.nameFallback)}
             </div>
             <p className="body-lg" style={{ marginTop: 0, whiteSpace: "pre-line" }}>
