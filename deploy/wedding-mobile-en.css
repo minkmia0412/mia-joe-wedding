@@ -1,0 +1,4 @@
+/* English mobile-only overrides — applies at 440px and below.
+   Rules here never affect the desktop layout. */
+@media (max-width: 440px) {
+}

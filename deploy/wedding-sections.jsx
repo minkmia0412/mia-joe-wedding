@@ -5,6 +5,169 @@
 const { useState, useEffect, useRef, useMemo } = React;
 
 // ─────────────────────────────────────────────────────────────
+// Language
+// ─────────────────────────────────────────────────────────────
+const LangContext = React.createContext(null);
+function useLangCtx() {
+  return React.useContext(LangContext) || { lang: "en", setLang: () => {} };
+}
+function useT() {
+  return STRINGS[useLangCtx().lang];
+}
+
+const STRINGS = {
+  en: {
+    days: "Days", hours: "Hours", min: "Min",
+    heroDate: "October 10, 2026",
+    invited: "You're Invited",
+    navStory: "Our Story", navBigDay: "The Big Day", navTravel: "Travel & Stay",
+    navThings: "Things to Do", navRegistry: "Registry", navFaqs: "FAQs",
+    labelYountville: "Yountville", labelNapa: "Napa",
+    story: [
+      "We first met on July 7th last year, on Chilseok, the Korean legend of two lovers who reunite across the Milky Way. Mia brought cherries and crackers, and Joe brought his favorite Napa Cabernet, Duckhorn. We only found out later that Duckhorn is named after the mandarin duck, which in Korea is a symbol of devoted, lifelong love.",
+      "The coincidences didn't stop there. A few weeks later, Joe showed up to help Mia move wearing a cap with \"412\" on it. It's Pittsburgh's area code, but it's also Mia's birthday, April 12th. It started to feel less like coincidence and more like we were exactly where we were meant to be.",
+      "After that came cooking at home, slow afternoons on the golf course, weekend trips to Lake Erie, and bigger adventures in Iceland and Taiwan. Looking back, none of it was ever really small.",
+      "On October 10th, 2026, we'll begin our next chapter in Napa Valley. We come from different worlds, and we want to keep honoring both as we build something that's ours.\nWe'd love for you to be there."
+    ],
+    galleryLabel: "Gallery",
+    galleryEmpty: "Photo coming soon",
+    venueBookPre: "If you'd like to stay at the venue, ",
+    venueBookLink: "you can book your stay here",
+    venueBookPost: ".",
+    interludeLabel: "5 Minute Walk to The Social",
+    attireTextPre: "Cocktail or garden party attire, where timeless elegance meets the romance of",
+    attireTextPost: "an autumn evening in Napa Valley.",
+    attireList: [
+      "Soft neutrals, muted tones, and classic silhouettes are welcome.",
+      "Please avoid white, ivory, and cream.",
+      "October evenings in Yountville can become cool after sunset, with temperatures dropping to around 50°F (10°C). A light wrap or jacket is recommended."
+    ],
+    travelParagraph: "A rental car is recommended for exploring Napa Valley at your own pace.\nMost major car rental services, including Hertz, are available at\nSan Francisco International Airport (SFO), approximately 1.5 hrs away.",
+    hotelMeta: (stars, distance) => `Google Review ${stars} / ${distance} from venue`,
+    thingsIntro1: "We chose Napa Valley in hopes of creating a wedding weekend that feels like a little getaway for the people we love, especially for those traveling from afar. Beyond the wedding itself, we hope you'll have time to slow down and enjoy everything this beautiful valley has to offer, from world-class wine to breathtaking vineyard views.",
+    thingsIntro2: "Every recommendation below is a place Mia and Joe have personally visited and loved over the years!",
+    wineries: "Wineries",
+    thingsClosing: "For more suggestions, feel free to reach out to Mia at jmink0412@gmail.com!",
+    registryBody: "Your presence at our wedding is the greatest gift of all. But if you'd like to\ncelebrate with us a little longer, we've created a honeymoon fund :)",
+    registryCardLine1: "Mia and Joe's", registryCardLine2: "Honeymoon Fund",
+    registryButton: "Visit Honeymoon Fund",
+    faqIntroPre: "If something isn't covered here, ", faqIntroPost: "please reach out for help!",
+    rsvpThankYouEyebrow: "Thank You",
+    rsvpThankYouName: (name) => `Thank you, ${name}.`,
+    rsvpYes: "We've received your RSVP and can't wait to celebrate with you on October 10th.",
+    rsvpNo: "Thank you for letting us know. We'll miss you on October 10th,\nbut appreciate you so much.",
+    nameFallback: "friend",
+    editResponse: "Edit response",
+    rsvpIntroPre: "Please RSVP by August 31st. ", rsvpIntroPost: "We'd love to hear from you soon.",
+    fullName: "Full Name", fullNamePh: "Your full name",
+    email: "Email Address",
+    attendingQ: "Will you be attending?",
+    attendYes: "✓ Yes, I'll be there", attendNo: "Regretfully decline",
+    guestsLabel: "Number of Guests",
+    mealLabel: "Meal Preference", mealOptions: ["Beef", "Fish", "Vegetarian", "Vegan"],
+    dietaryLabel: "Dietary Restrictions or Allergies",
+    dietaryPhDesktop: "Let us know if anything — and please add your guest's meal preference if you have one.",
+    dietaryPhMobile: "Let us know if anything — and please add\nyour guest's meal preference if you have one.",
+    songLabel: "Song Request", songPh: "Is there a song that would get you on the dance floor?",
+    noteLabel: "A Note or Wish for the Couple", notePh: "Anything you'd like to share with Mia & Joe",
+    sendRsvp: "Send RSVP",
+    footerHeadline: "We can't wait to see you!"
+  },
+  ko: {
+    days: "일", hours: "시간", min: "분",
+    heroDate: "2026년 10월 10일",
+    invited: "초대합니다",
+    navStory: "Our Story", navBigDay: "The Big Day", navTravel: "Travel & Stay", navThings: "Things to Do", navRegistry: "Registry", navFaqs: "FAQs",
+    labelYountville: "욘트빌", labelNapa: "나파",
+    story: [
+      "저희는 작년 7월 7일, 은하수를 사이에 두고 다시 만나는 두 연인의 이야기가 담긴 칠석날에 처음 만났습니다. Mia는 체리와 크래커를, Joe는 가장 좋아하는 나파 카베르네인 Duckhorn을 가져왔어요. Duckhorn이 한국에서 변치 않는 평생의 사랑을 상징하는 원앙에서 이름을 따왔다는 건 나중에야 알게 되었습니다.",
+      "우연은 거기서 그치지 않았어요. 몇 주 뒤, Joe는 Mia의 이사를 도와주러 \"412\"가 적힌 모자를 쓰고 나타났습니다. 그건 피츠버그의 지역번호이기도 하지만, 4월 12일, Mia의 생일이기도 했죠. 그때부터 이건 단순한 우연이 아니라, 운명이라는 느낌이 들기 시작했습니다.",
+      "그 후로 우리는 함께 요리를 하고, 골프장에서 느긋한 오후를 보내고, 근교의 Lake Erie부터, Iceland와 Taiwan으로 더 큰 모험을 떠났습니다. 돌이켜보면, 그 어느 순간도 결코 사소하지 않았어요.",
+      "2026년 10월 10일, 저희는 나파 밸리에서 인생의 새로운 막을 시작하려 합니다. 서로 다른 세계에서 자라온 저희는, 두 세계를 소중히 간직하며 우리만의 것들을 함께 만들어나가고 싶습니다.\n그 자리에 여러분이 함께해 주시면 더없이 기쁘겠습니다."
+    ],
+    galleryLabel: "Gallery",
+    galleryEmpty: "사진 준비 중",
+    venueBookPre: "예식장에서 머무르길 원하신다면, ",
+    venueBookLink: "이곳에서 예약하실 수 있어요",
+    venueBookPost: ".",
+    interludeLabel: "The Social까지 도보 5분",
+    attireTextPre: "칵테일 또는 가든파티 차림으로, 나파 밸리의 가을 저녁이 지닌 낭만과",
+    attireTextPost: "변치 않는 우아함을 더해주세요.",
+    attireList: [
+      "부드러운 뉴트럴 컬러, 차분한 톤, 클래식한 실루엣을 환영합니다.",
+      "화이트, 아이보리, 크림 색상은 피해 주세요.",
+      "욘트빌의 10월 저녁은 해가 진 뒤 약 10°C(50°F)까지 쌀쌀해질 수 있습니다. 가벼운 숄이나 재킷을 준비하시길 권해 드려요."
+    ],
+    travelParagraph: "나파 밸리를 여유롭게 둘러보시려면 렌터카를 추천드립니다. 차량으로 약 1시간 30분 떨어진\n샌프란시스코 국제공항(SFO)에서 Hertz를 비롯한 대부분의 주요 렌터카 업체를 이용할 수 있습니다.",
+    hotelMeta: (stars, distance) => `구글 리뷰 ${stars} · 예식장에서 ${distance}`,
+    thingsIntro1: "저희는 사랑하는 분들, 특히 먼 길을 와 주시는 분들께 작은 휴가처럼 느껴지는 결혼식 주말을\n선물해 드리고 싶어 나파 밸리를 선택했습니다. 결혼식뿐만 아니라, 나파밸리가 선사하는\n숨 막히게 아름다운 포도밭 풍경을 여유롭게 즐기시길 바랍니다.",
+    thingsIntro2: "아래의 장소들은 Mia와 Joe가 직접 방문하고 사랑했던 곳들이에요!",
+    wineries: "와이너리",
+    thingsClosing: "더 많은 추천이 필요하시면, Mia(jmink0412@gmail.com)에게 언제든 편하게 연락 주세요!",
+    registryBody: "여러분이 저희 결혼식에 함께해 주시는 것이 가장 큰 선물입니다. 다만 저희와 조금 더 오래 축하를\n나누고 싶으시다면, 이용하실 수 있는 신혼여행 기금 시스템을 마련해 두었어요 :)",
+    registryCardLine1: "Mia & Joe의", registryCardLine2: "신혼여행 기금",
+    registryButton: "신혼여행 기금 보러 가기",
+    faqIntroPre: "여기에 없는 내용이 있다면, ", faqIntroPost: "언제든 편하게 문의해 주세요!",
+    rsvpThankYouEyebrow: "감사합니다",
+    rsvpThankYouName: (name) => `${name}님, 감사합니다.`,
+    rsvpYes: "참석 회신을 잘 받았습니다. 10월 10일, 여러분과 함께 축하할 날을 손꼽아 기다리겠습니다.",
+    rsvpNo: "알려주셔서 감사합니다. 10월 10일 함께하지 못해 아쉽지만, 마음 깊이 감사드립니다.",
+    nameFallback: "소중한 분",
+    editResponse: "응답 수정하기",
+    rsvpIntroPre: "8월 31일까지 참석 여부를 회신해 주세요. ", rsvpIntroPost: "여러분의 소식을 기다리고 있겠습니다.",
+    fullName: "성함", fullNamePh: "성함을 입력해 주세요",
+    email: "이메일 주소",
+    attendingQ: "참석하시나요?",
+    attendYes: "✓ 네, 참석합니다", attendNo: "아쉽지만 참석이 어렵습니다",
+    guestsLabel: "참석 인원",
+    mealLabel: "식사 선택", mealOptions: ["소고기", "생선", "채식", "비건"],
+    dietaryLabel: "식이 제한 또는 알레르기",
+    dietaryPhDesktop: "특이사항이 있다면 알려주세요 — 동반인의 식사 선택도 함께 적어주세요.",
+    dietaryPhMobile: "특이사항이 있다면 알려주세요 —\n동반인의 식사 선택도 함께 적어주세요.",
+    songLabel: "신청곡", songPh: "댄스 플로어로 이끌 만한 노래가 있나요?",
+    noteLabel: "신랑·신부에게 전하는 글", notePh: "Mia & Joe에게 전하고 싶은 말을 남겨주세요",
+    sendRsvp: "회신 보내기",
+    footerHeadline: "여러분을 만날 날을 손꼽아 기다리고 있어요!"
+  }
+};
+
+// Language lives in the URL: /en (English) and /kr (Korean).
+// In environments where those paths don't exist (local preview / editor),
+// the toggle falls back to switching in place.
+function langFromLocation() {
+  return "en"; // this file drives the English page only
+}
+
+function isDeployedPath() {
+  try {
+    const p = (location.pathname || "").toLowerCase();
+    return /(^\/|\/index\.html|\/(en|kr)(\.html)?|\/(en|kr)\/(index\.html)?)$/.test(p);
+  } catch (e) { return false; }
+}
+function langHref(target) {
+  try {
+    const p = (location.pathname || "").toLowerCase();
+    const nested = /\/(en|kr)\/(index\.html)?$/.test(p);
+    const prefix = nested ? "../" : "";
+    return prefix + (target === "ko" ? "kr" : "en");
+  } catch (e) { return target === "ko" ? "/kr" : "/en"; }
+}
+
+function LangToggle() {
+  const { lang, setLang } = useLangCtx();
+  const pick = (v) => (e) => {
+    if (!isDeployedPath()) { e.preventDefault(); setLang(v); }
+  };
+  return (
+    <div className="lang-toggle" role="group" aria-label="Language">
+      <a href={langHref("en")} hrefLang="en" className={"lang-btn" + (lang === "en" ? " active" : "")} onClick={pick("en")}>EN</a>
+      <span className="lang-toggle-sep">/</span>
+      <a href={langHref("ko")} hrefLang="ko" className={"lang-btn" + (lang === "ko" ? " active" : "")} onClick={pick("ko")}>KR</a>
+    </div>);
+}
+
+
+// ─────────────────────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────────────────────
 function Monogram({ size = "mini", color }) {
@@ -28,7 +191,7 @@ function Monogram({ size = "mini", color }) {
 function SectionHeader({ eyebrow, title, subtitle, color }) {
   return (
     <div className="section-header">
-      <div className="section-header-label" style={{ ...(color ? { color } : null), fontWeight: "400", fontSize: "10px", textAlign: "center" }}>{title}</div>
+      <div className="section-header-label" style={{ ...(color ? { color } : null), fontWeight: "400", textAlign: "center", fontSize: "10px" }}>{title}</div>
       <div className="section-header-rule" style={{ ...(color ? { background: color } : null), height: "1px", width: "8px" }} />
       {subtitle &&
       <div style={{ marginTop: 18, fontFamily: "var(--f-serif)", fontStyle: "italic", color: "var(--ink-1)", maxWidth: 540, marginLeft: "auto", marginRight: "auto", fontSize: "20px", lineHeight: "1.3" }}>
@@ -37,6 +200,15 @@ function SectionHeader({ eyebrow, title, subtitle, color }) {
       }
     </div>);
 
+}
+
+function renderDesc(text) {
+  return String(text).split(/(\n|\{d\}|\{m\})/g).map((seg, i) => {
+    if (seg === "\n" || seg === "{d}")
+    return <React.Fragment key={i}><br className="desktop-br" />{" "}</React.Fragment>;
+    if (seg === "{m}") return <br key={i} className="mobile-br" />;
+    return seg;
+  });
 }
 
 function SectionDisplayTitle({ children }) {
@@ -64,20 +236,18 @@ function useCountdown(target) {
 // ─────────────────────────────────────────────────────────────
 function Nav({ activeSection }) {
   const [open, setOpen] = useState(false);
+  const t = useT();
   const links = [
-  ["story", "Our Story"],
-  ["bigday", "The Big Day"],
-  ["travel", "Travel & Stay"],
-  ["things", "Things to Do"],
-  ["registry", "Registry"],
-  ["faqs", "FAQs"]];
+  ["story", t.navStory],
+  ["bigday", t.navBigDay],
+  ["travel", t.navTravel],
+  ["things", t.navThings],
+  ["registry", t.navRegistry],
+  ["faqs", t.navFaqs]];
 
   return (
     <nav className="nav-bar" id="nav-bar">
       <div className="nav-inner">
-        <button className="nav-menu-btn" onClick={() => setOpen((o) => !o)}>
-          {open ? "Close" : "Menu"}
-        </button>
         <div className="nav-mono-col" style={{ height: "80px" }}>
           <Monogram />
           <div className={"nav-links" + (open ? " open" : "")} style={{ letterSpacing: "0px", fontSize: "15px", textAlign: "center", height: "70px" }}>
@@ -86,7 +256,7 @@ function Nav({ activeSection }) {
               key={id}
               href={`#${id}`}
               className={"nav-link" + (activeSection === id ? " active" : "")}
-              onClick={() => setOpen(false)} style={{ letterSpacing: "0px", fontWeight: "500" }}>
+              onClick={() => setOpen(false)} style={{ letterSpacing: "0px", fontWeight: "400" }}>
               
                 {label}
               </a>
@@ -94,6 +264,13 @@ function Nav({ activeSection }) {
           </div>
         </div>
         <div className="nav-rsvp-col">
+          <button
+            className={"nav-menu-btn" + (open ? " is-open" : "")}
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Menu"
+            aria-expanded={open}>
+            <span className="nav-menu-icon"><span></span><span></span><span></span></span>
+          </button>
           <a href="#rsvp" className="nav-rsvp" onClick={() => setOpen(false)} style={{ borderRadius: "100px", fontWeight: "200", lineHeight: "0.5", borderWidth: "0.5px", borderStyle: "solid", margin: "0px", padding: "13px 20px", letterSpacing: "1px" }}>RSVP</a>
         </div>
       </div>
@@ -105,6 +282,7 @@ function Nav({ activeSection }) {
 // Hero
 // ─────────────────────────────────────────────────────────────
 function Hero({ showCountdown = true }) {
+  const t = useT();
   const target = useMemo(() => new Date("2026-10-10T16:30:00-07:00").getTime(), []);
   const { days, hours, minutes } = useCountdown(target);
   return (
@@ -112,15 +290,15 @@ function Hero({ showCountdown = true }) {
       <div className="hero-names hero-names-image">
         <img src="uploads/Hero-Page.png" alt="The Wedding — Mia & Joe" className="hero-names-img" />
       </div>
-      <div className="hero-date" style={{ fontFamily: "\"PP Editorial New\"", fontSize: "30px", lineHeight: "1", fontWeight: "400", color: "rgb(5, 5, 5)" }}>October 10, 2026</div>
+      <div className="hero-date" style={{ fontFamily: "\"PP Editorial New\"", fontSize: "30px", lineHeight: "1", fontWeight: "400", color: "rgb(5, 5, 5)" }}>{t.heroDate}</div>
       <div className="hero-location" style={{ letterSpacing: "0.5px", fontWeight: "400", color: "rgb(5, 5, 5)" }}>The Estate Yountville, Yountville, CA</div>
       {showCountdown &&
       <div className="hero-countdown" style={{ fontSize: "6px", gap: "5px", flexDirection: "row", height: "27px" }}>
-          <CountItem n={days} l="Days" />
+          <CountItem n={days} l={t.days} />
           <span className="hero-countdown-colon" style={{ fontSize: "20px" }}>:</span>
-          <CountItem n={hours} l="Hours" />
+          <CountItem n={hours} l={t.hours} />
           <span className="hero-countdown-colon" style={{ fontSize: "20px" }}>:</span>
-          <CountItem n={minutes} l="Min" />
+          <CountItem n={minutes} l={t.min} />
         </div>
       }
       <a href="#rsvp" className="hero-rsvp-pill" style={{ lineHeight: "1", fontSize: "11px", padding: "10px 20px", letterSpacing: "1px" }}>RSVP</a>
@@ -141,17 +319,14 @@ function CountItem({ n, l }) {
 // Our Story
 // ─────────────────────────────────────────────────────────────
 function OurStory() {
+  const t = useT();
   return (
     <section id="story" data-screen-label="Our Story">
       <div className="container">
         <SectionDisplayTitle>Our Story</SectionDisplayTitle>
 
         <div className="story-body" style={{ fontSize: "20px", maxWidth: "100%", lineHeight: "1.3", color: "#3D3C3A", fontWeight: "300", width: "780px" }}>
-          <p>We first met on July 7th last year, on Chilseok, the Korean legend of two lovers who reunite across the Milky Way. Mia brought cherries and crackers, and Joe brought his favorite Napa Cabernet, Duckhorn. We only found out later that Duckhorn is named after the mandarin duck, which in Korea is a symbol of devoted, lifelong love.</p>
-          <p>The coincidences didn't stop there. A few weeks later, Joe showed up to help Mia move wearing a cap with "412" on it. It's Pittsburgh's area code, but it's also Mia's birthday, April 12th. It started to feel less like coincidence and more like we were exactly where we were meant to be.</p>
-          <p>After that came cooking at home, slow afternoons on the golf course, weekend trips to Lake Erie, and bigger adventures in Iceland and Taiwan. Looking back, none of it was ever really small.</p>
-          <p>On October 10th, 2026, we'll begin our next chapter in Napa Valley. We come from different worlds, and we want to keep honoring both as we build something that's ours.
-We'd love for you to be there.</p>
+          {t.story.map((p, i) => <p key={i}>{renderDesc(p)}</p>)}
         </div>
         <div className="story-film">
           <div className="film-strip-h film-strip-horiz">
@@ -168,6 +343,7 @@ We'd love for you to be there.</p>
             </div>
           </div>
         </div>
+        <Gallery />
         <div className="story-illustration">
           <img src="uploads/Duck.png" alt="" className="story-illustration-img" />
         </div>
@@ -176,17 +352,116 @@ We'd love for you to be there.</p>
 }
 
 // ─────────────────────────────────────────────────────────────
+// Gallery — 16 photo slots (4 × 4). Drop files into uploads/ and set src.
+// ─────────────────────────────────────────────────────────────
+const GALLERY_PHOTOS = [
+  { src: "uploads/1.jpg", alt: "Mia and Joe", focus: "center 78%" },
+  { src: "uploads/2.jpg", alt: "Mia and Joe", focus: "center 25%" },
+  { src: "uploads/3.jpg", alt: "Mia and Joe", focus: "center 78%" },
+  { src: "uploads/4.jpg", alt: "Mia and Joe" },
+  { src: "uploads/5.jpg", alt: "Mia and Joe", focus: "center 100%" },
+  { src: "uploads/6.jpg", alt: "Mia and Joe", focus: "center 25%" },
+  { src: "uploads/7.jpg", alt: "Mia and Joe", focus: "center 78%" },
+  { src: "uploads/8.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w9.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w10.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w11.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w12.jpg", alt: "Mia and Joe", focus: "center 95%" },
+  { src: "uploads/w13.jpg", alt: "Mia and Joe", focus: "center 88%" },
+  { src: "uploads/w14.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w15.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w16.jpg", alt: "Mia and Joe", focus: "center 55%" }
+];
+
+function Gallery() {
+  const t = useT();
+  const photos = GALLERY_PHOTOS.filter((p) => p.src);
+  const [pos, setPos] = useState(0);
+  const [zoom, setZoom] = useState(false);
+  const n = photos.length;
+  const next = () => setPos((v) => (v + 1) % n);
+  const prev = () => setPos((v) => (v - 1 + n) % n);
+  const railRef = useRef(null);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "Escape") setZoom(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [n]);
+
+  // keep the active thumbnail in view without touching page scroll
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const thumb = rail.children[pos];
+    if (!thumb) return;
+    const target = thumb.offsetLeft - (rail.clientWidth - thumb.clientWidth) / 2;
+    rail.scrollTo({ left: Math.max(0, target), behavior: "smooth" });
+  }, [pos]);
+
+  if (!n) return null;
+  const photo = photos[pos];
+
+  return (
+    <div className="gallery-block">
+      <SectionHeader title={t.galleryLabel} />
+      <div className="gallery-slider">
+        <button type="button" className="gallery-arrow gallery-arrow-prev" aria-label="Previous photo" onClick={prev}>&#8249;</button>
+        <div className="gallery-stage">
+          {photos.map((p, i) => (
+            <img key={i} src={p.src} alt={p.alt} loading={i < 3 ? "eager" : "lazy"}
+              className={"gallery-slide" + (i === pos ? " is-active" : "")}
+              style={{ ...(p.focus ? { objectPosition: p.focus } : null), ...(p.shift ? { transform: p.shift } : null) }}
+              onClick={() => { setPos(i); setZoom(true); }} />
+          ))}
+          <div className="gallery-dots" onClick={(e) => e.stopPropagation()}>
+            {photos.map((p, i) => (
+              <button key={i} type="button" className={"gallery-dot" + (i === pos ? " is-active" : "")}
+                aria-label={"Photo " + (i + 1)} onClick={() => setPos(i)} />
+            ))}
+          </div>
+        </div>
+        <button type="button" className="gallery-arrow gallery-arrow-next" aria-label="Next photo" onClick={next}>&#8250;</button>
+      </div>
+      <div className="gallery-rail" ref={railRef}>
+        {photos.map((p, i) => (
+          <button key={i} type="button" className={"gallery-thumb" + (i === pos ? " is-active" : "")}
+            aria-label={"Photo " + (i + 1)} onClick={() => setPos(i)}>
+            <img src={p.src} alt="" loading="lazy" style={p.focus ? { objectPosition: p.focus } : null} />
+          </button>
+        ))}
+      </div>
+      {zoom &&
+        <div className="gallery-lightbox" onClick={() => setZoom(false)} role="dialog" aria-modal="true">
+          <button type="button" className="gallery-close" aria-label="Close" onClick={() => setZoom(false)}>&times;</button>
+          <button type="button" className="gallery-nav gallery-prev" aria-label="Previous"
+            onClick={(e) => { e.stopPropagation(); prev(); }}>&#8249;</button>
+          <img src={photo.src} alt={photo.alt} className="gallery-lightbox-img" onClick={(e) => e.stopPropagation()} />
+          <button type="button" className="gallery-nav gallery-next" aria-label="Next"
+            onClick={(e) => { e.stopPropagation(); next(); }}>&#8250;</button>
+          <div className="gallery-counter">{pos + 1} / {n}</div>
+        </div>
+      }
+    </div>);
+}
+
+// ─────────────────────────────────────────────────────────────
 // The Big Day
 // ─────────────────────────────────────────────────────────────
 const SCHEDULE_ILLUSTRATIONS = {
-  "Reception": "uploads/Reception.png",
-  "Ceremony": "uploads/Ceremony.png",
-  "Cocktail Hour": "uploads/Cocktail-Hour.png",
-  "Dinner": "uploads/Dinner.png",
-  "After Hours": "uploads/After-Hours.png"
+  reception: "uploads/Reception.png",
+  ceremony: "uploads/Ceremony.png",
+  cocktail: "uploads/Cocktail-Hour.png",
+  dinner: "uploads/Dinner.png",
+  afterparty: "uploads/After-Hours.png"
 };
 
 function TheBigDay({ data }) {
+  const t = useT();
   // Build alternating rows; interlude counts as a slot too
   const rows = [];
   let rowIdx = 0;
@@ -243,7 +518,7 @@ function TheBigDay({ data }) {
             </h3>
             <div className="venue-meta" style={{ letterSpacing: "0px", fontSize: "13px" }}>6526 Yount Street · Yountville, CA</div>
             <p className="venue-desc">
-              If you'd like to stay at the venue, <a href="https://be.synxis.com/?Hotel=39954&Chain=30212&arrive=2026-10-09&depart=2026-10-11&adult=1&child=0&group=KYUNGTUNG26" target="_blank" rel="noreferrer" className="venue-desc-link">you can book your stay here</a>.
+              {t.venueBookPre}<br className="mobile-br" /><a href="https://be.synxis.com/?Hotel=39954&Chain=30212&arrive=2026-10-09&depart=2026-10-11&adult=1&child=0&group=KYUNGTUNG26" target="_blank" rel="noreferrer" className="venue-desc-link">{t.venueBookLink}</a>{t.venueBookPost}
             </p>
           </figcaption>
           <a href="https://www.theestateyountville.com/" target="_blank" rel="noreferrer" className="venue-img-wrap">
@@ -258,7 +533,7 @@ function TheBigDay({ data }) {
             if (row.kind === "interlude") {
               const interludeContent =
               <div className="tl-side" style={{ ...{ padding: row.side === "left" ? "0px 28px 0px 0px" : "0px 0px 0px 28px", textAlign: row.side === "left" ? "right" : "left" }, padding: "0px 0px 0px 20px" }}>
-                  <div className="tl-interlude-label" style={{ fontSize: "13px", letterSpacing: "0px" }}>5 Minute Walk to The Social</div>
+                  <div className="tl-interlude-label" style={{ fontSize: "13px", letterSpacing: "0px" }}>{t.interludeLabel}</div>
                   <p className="tl-interlude-text" style={{ marginLeft: row.side === "left" ? "auto" : "0", marginRight: row.side === "left" ? "0" : "auto", color: "rgb(111, 111, 111)", fontSize: "17px", width: "284px" }}>{row.item.interlude}</p>
                 </div>;
               return (
@@ -278,7 +553,7 @@ function TheBigDay({ data }) {
 
             }
             const { item, side } = row;
-            const illoSrc = SCHEDULE_ILLUSTRATIONS[item.title];
+            const illoSrc = SCHEDULE_ILLUSTRATIONS[item.id];
             const illo = illoSrc ?
             <div className="tl-side tl-illo" style={{ padding: "0px", margin: "0px 10px 0px 0px" }}>
                 <img src={illoSrc} alt="" className="tl-illo-img" style={{ padding: "0px", margin: "0px 0px 0px 14px" }} />
@@ -290,8 +565,8 @@ function TheBigDay({ data }) {
                 <>
                     <div className="tl-side event" style={{ borderWidth: "0px", borderStyle: "solid", textAlign: "right", margin: "0px", padding: "0px 20px 0px 0px", width: "303px" }}>
                       <h3 className="tl-title" style={{ fontFamily: "\"PP Editorial New\"", fontWeight: "400", fontSize: "22px", margin: "0px 0px 7px" }}>{item.title}</h3>
-                      <div className="tl-meta" style={{ letterSpacing: "0px", fontSize: "13px", margin: "0px 0px 8px" }}>{item.time} / {item.loc}</div>
-                      <p className="tl-desc" style={{ marginLeft: "auto", color: "rgb(111, 111, 111)", fontSize: "17px", margin: "0px", width: "286px" }}>{item.desc}</p>
+                      <div className="tl-meta" style={{ letterSpacing: "0px", fontSize: "13px", margin: "0px 0px 8px" }}>{item.time} / <span style={{ whiteSpace: "nowrap" }}>{item.loc}</span></div>
+                      <p className="tl-desc" style={{ marginLeft: "auto", color: "rgb(111, 111, 111)", fontSize: "17px", margin: "0px", width: "286px" }}>{renderDesc(item.desc)}</p>
                     </div>
                     {illo}
                   </> :
@@ -300,8 +575,8 @@ function TheBigDay({ data }) {
                     {illo}
                     <div className="tl-side event" style={{ textAlign: "left", margin: "0px", padding: "0px 0px 0px 20px" }}>
                       <h3 className="tl-title" style={{ fontFamily: "\"PP Editorial New\"", fontWeight: "400", fontSize: "22px", margin: "0px 0px 7px" }}>{item.title}</h3>
-                      <div className="tl-meta" style={{ letterSpacing: "0px", margin: "0px 0px 8px", fontSize: "13px" }}>{item.time} / {item.loc}</div>
-                      <p className="tl-desc" style={{ color: "rgb(111, 111, 111)", fontSize: "17px", margin: "0px" }}>{item.desc}</p>
+                      <div className="tl-meta" style={{ letterSpacing: "0px", margin: "0px 0px 8px", fontSize: "13px" }}>{item.time} / <span style={{ whiteSpace: "nowrap" }}>{item.loc}</span></div>
+                      <p className="tl-desc" style={{ color: "rgb(111, 111, 111)", fontSize: "17px", margin: "0px" }}>{renderDesc(item.desc)}</p>
                     </div>
                   </>
                 }
@@ -313,15 +588,9 @@ function TheBigDay({ data }) {
         <div style={{ marginTop: 100 }}>
           <SectionHeader title="Attire" />
           <div className="attire-wrap" style={{ width: "620px" }}>
-            <p className="attire-text" style={{ fontSize: "20px" }}>Cocktail or garden party attire, where timeless elegance meets the romance of<br />
-an autumn evening in Napa Valley.
-
-            </p>
+            <p className="attire-text" style={{ fontSize: "20px" }}>{t.attireTextPre}<br className="desktop-br" /> {t.attireTextPost}</p>
             <ul className="attire-list">
-              <li style={{ color: "rgb(5, 5, 5)", fontSize: "20px" }}>Soft neutrals, muted tones, and classic silhouettes are welcome.</li>
-              <li style={{ color: "rgb(5, 5, 5)", fontSize: "20px" }}>Please avoid white, ivory, and cream.</li>
-              <li style={{ fontSize: "20px", color: "rgb(5, 5, 5)" }}>October evenings in Yountville can become cool after sunset, with temperatures
-dropping to around 50°F (10°C). A light wrap or jacket is recommended.</li>
+              {t.attireList.map((li, i) => <li key={i} style={{ color: "rgb(5, 5, 5)", fontSize: "20px" }}>{li}</li>)}
             </ul>
           </div>
         </div>
@@ -333,13 +602,14 @@ dropping to around 50°F (10°C). A light wrap or jacket is recommended.</li>
 // Travel & Stay
 // ─────────────────────────────────────────────────────────────
 function HotelCard({ hotel }) {
+  const t = useT();
   const Tag = hotel.url ? "a" : "div";
   const linkProps = hotel.url ? { href: hotel.url, target: "_blank", rel: "noreferrer" } : {};
   return (
     <Tag className="hotel-card" {...linkProps}>
       <h3 className="hotel-name" style={{ fontFamily: "\"PP Editorial New\"", color: "rgb(5, 5, 5)", margin: "10px 0px 4px" }}>{hotel.name}</h3>
-      <div className="hotel-meta" style={{ letterSpacing: "0px" }}>Google Review {hotel.stars} / {hotel.distance} from venue</div>
-      <p className="hotel-desc" style={{ fontSize: "17px", color: "rgb(111, 111, 111)" }}>{hotel.desc}</p>
+      <div className="hotel-meta" style={{ letterSpacing: "0px" }}>{t.hotelMeta(hotel.stars, hotel.distance)}</div>
+      <p className="hotel-desc" style={{ fontSize: "17px", color: "rgb(111, 111, 111)" }}>{renderDesc(hotel.desc)}</p>
       {hotel.img ?
       <div className="hotel-img-wrap">
           <img src={hotel.img} alt={hotel.name} className="hotel-img-photo" />
@@ -353,19 +623,14 @@ function HotelCard({ hotel }) {
 }
 
 function TravelStay({ data }) {
+  const t = useT();
   return (
     <section id="travel" data-screen-label="Travel & Stay">
       <div className="container">
         <SectionDisplayTitle>Travel &amp; Stay</SectionDisplayTitle>
 
         <div className="travel-block" style={{ lineHeight: "1.3" }}>
-          <p style={{ fontSize: "20px" }}>A rental car is recommended for exploring Napa Valley at your own pace.<br />
-Most major car rental services, including Hertz, are available at<br />
-San Francisco International Airport (SFO), approximately 1.5 hrs away.
-
-
-          </p>
-          <p style={{ fontSize: "20px" }}></p>
+          <p style={{ fontSize: "20px" }}>{renderDesc(t.travelParagraph)}</p>
         </div>
 
         <div className="hotels-row">
@@ -415,34 +680,26 @@ function PlaceList({ label, items, color }) {
 }
 
 function ThingsToDo({ data }) {
+  const t = useT();
   return (
     <section id="things" className="todo-bg" data-screen-label="Things to Do">
       <div className="container">
         <SectionDisplayTitle>Things to Do</SectionDisplayTitle>
-        <p style={{ textAlign: "center", fontFamily: "var(--f-serif)", color: "var(--ink-1)", maxWidth: 720, margin: "0 auto 1.2em", fontSize: "20px", lineHeight: "1.3", width: "704px" }}>We chose Napa Valley in hopes of creating a wedding weekend that feels like a little getaway for the people we love, especially for those traveling from afar. Beyond the wedding itself,
-we hope you'll have time to slow down and enjoy everything this beautiful valley has to offer, from world-class wine to breathtaking vineyard views.
-        </p>
-        <p style={{ textAlign: "center", fontFamily: "var(--f-serif)", color: "var(--ink-1)", maxWidth: 720, margin: "0 auto 56px", fontSize: "20px", lineHeight: "1.3", width: "540px" }}>Every recommendation below is a place Mia and Joe have
-personally visited and loved over the years!
-        </p>
-        
+        <p style={{ textAlign: "center", fontFamily: "var(--f-serif)", color: "var(--ink-1)", maxWidth: 720, margin: "0 auto 1.2em", fontSize: "20px", lineHeight: "1.3", width: "704px" }}>{renderDesc(t.thingsIntro1)}</p>
+        <p style={{ textAlign: "center", fontFamily: "var(--f-serif)", color: "var(--ink-1)", maxWidth: 720, margin: "0 auto 56px", fontSize: "20px", lineHeight: "1.3", width: "540px" }}>{renderDesc(t.thingsIntro2)}</p>
 
         <div className="place-grid">
           <div className="place-col">
-            <PlaceList label="Yountville" items={[...data.yountville_food, ...data.yountville_todo]} color="var(--terra)" />
+            <PlaceList label={t.labelYountville} items={[...data.yountville_food, ...data.yountville_todo]} color="var(--terra)" />
           </div>
           <div className="place-col">
-            <PlaceList label="Napa" items={[...data.napa_food, ...data.napa_todo]} color="var(--terra)" />
-            <PlaceList label="Wineries" items={data.napa_wine} color="var(--wine)" />
+            <PlaceList label={t.labelNapa} items={[...data.napa_food, ...data.napa_todo]} color="var(--terra)" />
+            <PlaceList label={t.wineries} items={data.napa_wine} color="var(--wine)" />
           </div>
         </div>
 
         <div style={{ textAlign: "center", marginTop: 60 }}>
-          <p className="body" style={{ maxWidth: 620, margin: "0 auto 24px", fontFamily: "\"PP Editorial New\"", fontStyle: "italic", fontWeight: "300", width: "800px", lineHeight: "1.5", fontSize: "25px", color: "rgb(0, 0, 0)" }}>For more suggestions, feel free to reach out to Mia at miaandjoewedding.com!
-
-
-
-          </p>
+          <p className="body" style={{ maxWidth: 620, margin: "0 auto 24px", fontFamily: "\"PP Editorial New\"", fontStyle: "italic", fontWeight: "300", width: "800px", lineHeight: "1.5", fontSize: "25px", color: "rgb(0, 0, 0)" }}>{t.thingsClosing}</p>
         </div>
       </div>
     </section>);
@@ -453,13 +710,13 @@ personally visited and loved over the years!
 // Registry
 // ─────────────────────────────────────────────────────────────
 function Registry() {
+  const t = useT();
   return (
     <section id="registry" className="registry-section" data-screen-label="Registry">
       <div className="container-narrow">
         <h2 className="section-display-title" style={{ color: "var(--bg-cream)", fontFamily: '"PP Editorial New"', fontWeight: 350, letterSpacing: "-1px", fontSize: "50px" }}>Registry</h2>
 
-        <p className="body-lg" style={{ color: "rgba(252,247,242,0.85)", maxWidth: 780, margin: "32px auto 0", textAlign: "center", lineHeight: "1.3", fontSize: "20px", width: "auto" }}>Your presence at our wedding is the greatest gift of all. But if you'd like to celebrate with us
-a little longer, we've created a honeymoon fund :)</p>
+        <p className="body-lg" style={{ color: "rgba(252,247,242,0.85)", maxWidth: 780, margin: "32px auto 0", textAlign: "center", lineHeight: "1.3", fontSize: "20px", width: "auto", fontWeight: 300 }}>{renderDesc(t.registryBody)}</p>
 
         <div className="registry-card-row">
           <img src="uploads/Funding-1.png" alt="" className="registry-illo registry-illo-left" />
@@ -468,9 +725,9 @@ a little longer, we've created a honeymoon fund :)</p>
 
             </div>
             <div style={{ height: 16 }} />
-            <h3 style={{ color: "var(--bg-cream)", fontStyle: "normal", margin: "0 0 28px 0", lineHeight: 1.2, fontFamily: "\"PP Editorial New\"", fontSize: "30px", fontWeight: "200" }}>Mia and Joe's<br />Honeymoon Fund</h3>
+            <h3 className="registry-card-title" style={{ color: "var(--bg-cream)", fontStyle: "normal", margin: "0 0 28px 0", lineHeight: 1.2, fontFamily: "\"PP Editorial New\"", fontSize: "30px", fontWeight: "200" }}>{t.registryCardLine1}<br />{t.registryCardLine2}</h3>
             <a className="btn" href="https://www.honeyfund.com/site/Mia-Joe-10-10-2026" target="_blank" rel="noreferrer" style={{ letterSpacing: "0px" }}>
-              Visit Honeymoon Fund
+              {t.registryButton}
             </a>
           </div>
           <img src="uploads/Funding-2.png" alt="" className="registry-illo registry-illo-right" />
@@ -483,6 +740,7 @@ a little longer, we've created a honeymoon fund :)</p>
 // FAQs
 // ─────────────────────────────────────────────────────────────
 function FAQs({ data }) {
+  const t = useT();
   const [openSet, setOpenSet] = useState(() => new Set());
   const toggle = (i) => {
     setOpenSet((prev) => {
@@ -495,9 +753,7 @@ function FAQs({ data }) {
     <section id="faqs" data-screen-label="FAQs">
       <div className="container-narrow">
         <SectionDisplayTitle>FAQs</SectionDisplayTitle>
-        <p style={{ textAlign: "center", fontStyle: "italic", maxWidth: 540, margin: "0 auto 56px", fontFamily: "\"PP Editorial New\"", fontWeight: "300", fontSize: "25px", lineHeight: "1.5", color: "rgb(0, 0, 0)" }}>If something isn't covered here, please reach out for help!
-
-        </p>
+        <p style={{ textAlign: "center", fontStyle: "italic", maxWidth: 540, margin: "0 auto 56px", fontFamily: "\"PP Editorial New\"", fontWeight: "300", fontSize: "25px", lineHeight: "1.5", color: "rgb(0, 0, 0)" }}>{t.faqIntroPre}<br className="mobile-br" />{t.faqIntroPost}</p>
         
         <div className="faq-list">
           {data.faqs.map((f, i) =>
@@ -526,6 +782,7 @@ function FAQs({ data }) {
 // RSVP Form
 // ─────────────────────────────────────────────────────────────
 function RSVP() {
+  const t = useT();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -538,6 +795,15 @@ function RSVP() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 820px)");
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
 
   const update = (key, v) => setForm((f) => ({ ...f, [key]: v }));
 
@@ -577,18 +843,16 @@ function RSVP() {
     return (
       <section id="rsvp" className="rsvp-section" data-screen-label="RSVP">
         <div className="container-narrow">
-          <SectionHeader eyebrow="Thank You" title="RSVP" />
+          <SectionHeader eyebrow={t.rsvpThankYouEyebrow} title="RSVP" />
           <div className="rsvp-success" style={{ backgroundColor: "rgb(240, 234, 216)" }}>
             <div className="display-2" style={{ fontStyle: "italic", marginBottom: 16, fontFamily: "\"PP Editorial New\"", fontWeight: "300", color: "rgb(57, 24, 23)", lineHeight: "1.15", letterSpacing: "-3px" }}>
-              Thank you, {form.name.split(" ")[0] || "friend"}.
+              {t.rsvpThankYouName(form.name.split(" ")[0] || t.nameFallback)}
             </div>
             <p className="body-lg" style={{ marginTop: 0, whiteSpace: "pre-line" }}>
-              {form.attending === "yes" ?
-              "We've received your RSVP and can't wait to celebrate with you on October 10th." :
-              "Thank you for letting us know. We'll miss you on October 10th,\nbut appreciate you so much."}
+              {form.attending === "yes" ? t.rsvpYes : t.rsvpNo}
             </p>
             <button className="btn" style={{ marginTop: 24, backgroundColor: "rgb(57, 24, 23)", color: "rgb(255, 255, 255)", letterSpacing: "0px" }} onClick={() => setSubmitted(false)}>
-              Edit response
+              {t.editResponse}
             </button>
           </div>
         </div>
@@ -600,26 +864,24 @@ function RSVP() {
     <section id="rsvp" className="rsvp-section" data-screen-label="RSVP">
       <div className="container-narrow">
         <SectionDisplayTitle>RSVP</SectionDisplayTitle>
-        <p style={{ textAlign: "center", fontStyle: "italic", maxWidth: 540, margin: "0 auto 56px", lineHeight: 1.6, fontSize: "22px", fontWeight: "300", fontFamily: "\"PP Editorial New\"", color: "rgb(0, 0, 0)" }}>Please RSVP by August 31st. We'd love to hear from you soon.
-
-        </p>
+        <p style={{ textAlign: "center", fontStyle: "italic", maxWidth: 540, margin: "0 auto 56px", lineHeight: 1.6, fontSize: "22px", fontWeight: "300", fontFamily: "\"PP Editorial New\"", color: "rgb(0, 0, 0)" }}>{t.rsvpIntroPre}<br className="mobile-br" />{t.rsvpIntroPost}</p>
         
 
         <form className="form" onSubmit={onSubmit}>
           <div className="form-row-2">
             <div className="form-row">
-              <label htmlFor="rsvp-name" style={{ letterSpacing: "0px" }}>Full Name</label>
+              <label htmlFor="rsvp-name" style={{ letterSpacing: "0px" }}>{t.fullName}</label>
               <input
                 id="rsvp-name"
                 type="text"
                 required
                 value={form.name}
                 onChange={(e) => update("name", e.target.value)}
-                placeholder="Your full name" />
+                placeholder={t.fullNamePh} />
               
             </div>
             <div className="form-row">
-              <label htmlFor="rsvp-email" style={{ letterSpacing: "0px" }}>Email Address</label>
+              <label htmlFor="rsvp-email" style={{ letterSpacing: "0px" }}>{t.email}</label>
               <input
                 id="rsvp-email"
                 type="email"
@@ -632,21 +894,21 @@ function RSVP() {
           </div>
 
           <div className="form-row">
-            <label style={{ letterSpacing: "0px", padding: "0px 0px 7px" }}>Will you be attending?</label>
+            <label style={{ letterSpacing: "0px", padding: "0px 0px 7px" }}>{t.attendingQ}</label>
             <div className="pill-group" style={{ gap: "20px" }}>
               <button
                 type="button"
                 className={"pill" + (form.attending === "yes" ? " selected attending" : "")}
                 onClick={() => update("attending", "yes")} style={{ letterSpacing: "0px" }}>
                 
-                ✓ Yes, I'll be there
+                {t.attendYes}
               </button>
               <button
                 type="button"
                 className={"pill" + (form.attending === "no" ? " selected declining" : "")}
                 onClick={() => update("attending", "no")} style={{ letterSpacing: "0px" }}>
                 
-                Regretfully decline
+                {t.attendNo}
               </button>
             </div>
           </div>
@@ -655,7 +917,7 @@ function RSVP() {
           <div className="rsvp-yes-section" style={{ letterSpacing: "0px", display: "flex", flexDirection: "column", gap: "28px" }}>
               <div className="form-row-2">
                 <div className="form-row">
-                  <label style={{ letterSpacing: "0px", padding: "0px 0px 7px" }}>Number of Guests</label>
+                  <label style={{ letterSpacing: "0px", padding: "0px 0px 7px" }}>{t.guestsLabel}</label>
                   <div>
                     <div className="number-stepper" style={{ width: "140px", borderWidth: "1px" }}>
                       <button type="button" onClick={() => update("guests", Math.max(1, form.guests - 1))} style={{ padding: "10px 0px" }}>−</button>
@@ -667,9 +929,9 @@ function RSVP() {
               </div>
 
               <div className="form-row" style={{ gap: "8px" }}>
-                <label style={{ letterSpacing: "0px", padding: "0px 0px 7px" }}>Meal Preference</label>
+                <label style={{ letterSpacing: "0px", padding: "0px 0px 7px" }}>{t.mealLabel}</label>
                 <div className="pill-group" style={{ flexWrap: "wrap" }}>
-                  {["Beef", "Fish", "Vegetarian", "Vegan"].map((m) =>
+                  {t.mealOptions.map((m) =>
                 <button
                   key={m}
                   type="button"
@@ -683,41 +945,41 @@ function RSVP() {
               </div>
 
               <div className="form-row">
-                <label htmlFor="rsvp-diet" style={{ padding: "27px 0px 0px", letterSpacing: "0px" }}>Dietary Restrictions or Allergies</label>
-                <input
+                <label htmlFor="rsvp-diet" style={{ padding: "27px 0px 0px", letterSpacing: "0px" }}>{t.dietaryLabel}</label>
+                <textarea
                 id="rsvp-diet"
-                type="text"
+                rows={2}
                 value={form.dietary}
                 onChange={(e) => update("dietary", e.target.value)}
-                placeholder="Let us know if anything" />
+                placeholder={isMobile ? t.dietaryPhMobile : t.dietaryPhDesktop} />
               
               </div>
 
               <div className="form-row" style={{ padding: "27px 0px 0px" }}>
-                <label htmlFor="rsvp-song" style={{ letterSpacing: "0px" }}>Song Request</label>
+                <label htmlFor="rsvp-song" style={{ letterSpacing: "0px" }}>{t.songLabel}</label>
                 <input
                 id="rsvp-song"
                 type="text"
                 value={form.song}
                 onChange={(e) => update("song", e.target.value)}
-                placeholder="Is there a song that would get you on the dance floor?" />
+                placeholder={t.songPh} />
               
               </div>
             </div>
           }
 
           <div className="form-row" style={{ margin: "0px" }}>
-            <label htmlFor="rsvp-note" style={{ letterSpacing: "0px" }}>A Note or Wish for the Couple</label>
+            <label htmlFor="rsvp-note" style={{ letterSpacing: "0px" }}>{t.noteLabel}</label>
             <textarea
               id="rsvp-note"
               value={form.note}
               onChange={(e) => update("note", e.target.value)}
-              placeholder="Anything you'd like to share with Mia & Joe" style={{ height: "50px", padding: "5px 0px 10px" }} />
+              placeholder={t.notePh} style={{ height: "50px", padding: "5px 0px 10px" }} />
             
           </div>
 
           <div className="form-submit">
-            <button type="submit" className="btn btn-wine" style={{ letterSpacing: "0px" }}>Send RSVP</button>
+            <button type="submit" className="btn btn-wine" style={{ letterSpacing: "0px" }}>{t.sendRsvp}</button>
           </div>
         </form>
       </div>
@@ -729,9 +991,10 @@ function RSVP() {
 // Footer
 // ─────────────────────────────────────────────────────────────
 function Footer() {
+  const t = useT();
   return (
     <footer className="footer">
-      <div className="footer-headline" style={{ fontFamily: "\"PP Editorial New\"", fontStyle: "italic", lineHeight: "1.1", fontWeight: "300", padding: "0px", textAlign: "center" }}>We can't wait to see you!</div>
+      <div className="footer-headline" style={{ fontFamily: "\"PP Editorial New\"", fontStyle: "italic", lineHeight: "1.1", fontWeight: "300", padding: "0px", textAlign: "center" }}>{t.footerHeadline}</div>
       <img src="uploads/Heart.png" alt="" className="footer-hearts" style={{ margin: "26px auto -60px" }} />
       <div className="footer-credit" style={{ letterSpacing: "0px", fontSize: "14px" }}>Made with love · miaandjoewedding.com</div>
     </footer>);
@@ -747,11 +1010,12 @@ Object.assign(window, {
 // ─────────────────────────────────────────────────────────────
 // Main App
 // ─────────────────────────────────────────────────────────────
-const WEDDING_DATA = JSON.parse(document.getElementById("wedding-data").textContent);
+const WEDDING_DATA_KO = JSON.parse(document.getElementById("wedding-data-ko").textContent);
+const WEDDING_DATA_EN = JSON.parse(document.getElementById("wedding-data-en").textContent);
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accentPalette": "wine",
-  "displayFont": "Bodoni Moda",
+  "displayFont": "PP Editorial New",
   "showCountdown": true
 } /*EDITMODE-END*/;
 
@@ -764,6 +1028,7 @@ const ACCENT_PALETTES = {
 };
 
 const DISPLAY_FONTS = {
+  "PP Editorial New": '"PP Editorial New", "Gowun Batang", "EB Garamond", serif',
   "Bodoni Moda": '"Bodoni Moda", serif',
   "Italiana": '"Italiana", serif',
   "Cormorant": '"Cormorant Garamond", serif',
@@ -811,6 +1076,8 @@ function ScrollTopButton() {
 }
 
 function InvitationIntro() {
+  const t = useT();
+  const { lang } = useLangCtx();
   const [phase, setPhase] = useState("show"); // show -> fade -> done
   useEffect(() => {
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -831,7 +1098,7 @@ function InvitationIntro() {
   if (phase === "done") return null;
   return (
     <div className={"invite-intro" + (phase === "fade" ? " fade" : "")} aria-hidden="true">
-      <div className="invite-caption">You're Invited</div>
+      <div className="invite-caption" style={lang === "ko" ? { fontFamily: "ui-monospace" } : null}>{t.invited}</div>
       <div className="invite-card-wrap">
         <img src="uploads/invite-card.jpg" alt="" className="invite-card-img" />
       </div>
@@ -841,7 +1108,14 @@ function InvitationIntro() {
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [lang, setLangState] = useState(langFromLocation);
+  const setLang = (v) => {
+    setLangState(v);
+    try { document.documentElement.lang = v === "ko" ? "ko" : "en"; } catch (e) {}
+  };
+  useEffect(() => { try { document.documentElement.lang = lang === "ko" ? "ko" : "en"; } catch (e) {} }, [lang]);
   const active = useScrollSpy(["story", "bigday", "travel", "things", "registry", "faqs", "rsvp"]);
+  const WEDDING_DATA = lang === "ko" ? WEDDING_DATA_KO : WEDDING_DATA_EN;
 
   useEffect(() => {
     const root = document.documentElement;
@@ -850,11 +1124,11 @@ function App() {
     root.style.setProperty("--terra", palette.terra);
     root.style.setProperty("--olive", palette.olive);
     root.style.setProperty("--sage", palette.sage);
-    root.style.setProperty("--f-display", DISPLAY_FONTS[t.displayFont] || DISPLAY_FONTS["Bodoni Moda"]);
+    root.style.setProperty("--f-display", DISPLAY_FONTS[t.displayFont] || DISPLAY_FONTS["PP Editorial New"]);
   }, [t.accentPalette, t.displayFont]);
 
   return (
-    <>
+    <LangContext.Provider value={{ lang, setLang }}>
       <Nav activeSection={active} />
       <main>
         <Hero showCountdown={t.showCountdown} />
@@ -893,7 +1167,7 @@ function App() {
           onChange={(v) => setTweak("showCountdown", v)} />
         
       </TweaksPanel>
-    </>);
+    </LangContext.Provider>);
 
 }
 
