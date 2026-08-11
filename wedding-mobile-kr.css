@@ -10,4 +10,5 @@
   html[lang="ko"] #faqs .container-narrow > p { font-size: 14px !important; }
   html[lang="ko"] #rsvp .container-narrow > p { font-size: 12.6px !important; }
   html[lang="ko"] .footer-headline { font-size: clamp(19.6px, 4.9vw, 29.4px) !important; }
+  html[lang="ko"] .rsvp-success .display-2 { font-size: clamp(16px, 4.5vw, 24px) !important; }
 }
