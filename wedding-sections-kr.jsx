@@ -174,7 +174,7 @@ function Monogram({ size = "mini", color }) {
   if (size === "mini") {
     return (
       <a href="#top" className="monogram-mini" aria-label="M&J — Home">
-        <img src="uploads/Monogram.png" alt="M&J" className="monogram-mini-img" />
+        <img src="../uploads/Monogram.png" alt="M&J" className="monogram-mini-img" />
       </a>);
 
   }
@@ -288,7 +288,7 @@ function Hero({ showCountdown = true }) {
   return (
     <section className="hero" id="top" data-screen-label="Hero">
       <div className="hero-names hero-names-image">
-        <img src="uploads/Hero-Page.png" alt="The Wedding — Mia & Joe" className="hero-names-img" />
+        <img src="../uploads/Hero-Page.png" alt="The Wedding — Mia & Joe" className="hero-names-img" />
       </div>
       <div className="hero-date" style={{ fontFamily: "\"PP Editorial New\"", fontSize: "30px", lineHeight: "1", fontWeight: "400", color: "rgb(5, 5, 5)" }}>{t.heroDate}</div>
       <div className="hero-location" style={{ letterSpacing: "0.5px", fontWeight: "400", color: "rgb(5, 5, 5)" }}>The Estate Yountville, Yountville, CA</div>
@@ -331,21 +331,21 @@ function OurStory() {
         <div className="story-film">
           <div className="film-strip-h film-strip-horiz">
             <div className="film-frames-h">
-              <div className="film-frame"><img src="uploads/story-film-1.jpg" alt="Mia and Joe" /></div>
-              <div className="film-frame"><img src="uploads/story-film-2.jpg" alt="Mia and Joe" /></div>
-              <div className="film-frame"><img src="uploads/story-film-5.jpg" alt="Mia and Joe" /></div>
+              <div className="film-frame"><img src="../uploads/story-film-1.jpg" alt="Mia and Joe" /></div>
+              <div className="film-frame"><img src="../uploads/story-film-2.jpg" alt="Mia and Joe" /></div>
+              <div className="film-frame"><img src="../uploads/story-film-5.jpg" alt="Mia and Joe" /></div>
             </div>
           </div>
           <div className="film-strip-v film-strip-vert">
             <div className="film-frames-v">
-              <div className="film-frame"><img src="uploads/story-film-4.jpg" alt="Mia and Joe" /></div>
-              <div className="film-frame"><img src="uploads/story-film-3.jpg" alt="Mia and Joe" /></div>
+              <div className="film-frame"><img src="../uploads/story-film-4.jpg" alt="Mia and Joe" /></div>
+              <div className="film-frame"><img src="../uploads/story-film-3.jpg" alt="Mia and Joe" /></div>
             </div>
           </div>
         </div>
         <Gallery />
         <div className="story-illustration">
-          <img src="uploads/Duck.png" alt="" className="story-illustration-img" />
+          <img src="../uploads/Duck.png" alt="" className="story-illustration-img" />
         </div>
       </div>
     </section>);
@@ -355,22 +355,22 @@ function OurStory() {
 // Gallery — 16 photo slots (4 × 4). Drop files into uploads/ and set src.
 // ─────────────────────────────────────────────────────────────
 const GALLERY_PHOTOS = [
-  { src: "uploads/1.jpg", alt: "Mia and Joe", focus: "center 78%" },
-  { src: "uploads/2.jpg", alt: "Mia and Joe", focus: "center 25%" },
-  { src: "uploads/3.jpg", alt: "Mia and Joe", focus: "center 78%" },
-  { src: "uploads/4.jpg", alt: "Mia and Joe" },
-  { src: "uploads/5.jpg", alt: "Mia and Joe", focus: "center 100%" },
-  { src: "uploads/6.jpg", alt: "Mia and Joe", focus: "center 25%" },
-  { src: "uploads/7.jpg", alt: "Mia and Joe", focus: "center 78%" },
-  { src: "uploads/8.jpg", alt: "Mia and Joe" },
-  { src: "uploads/w9.jpg", alt: "Mia and Joe" },
-  { src: "uploads/w10.jpg", alt: "Mia and Joe" },
-  { src: "uploads/w11.jpg", alt: "Mia and Joe" },
-  { src: "uploads/w12.jpg", alt: "Mia and Joe", focus: "center 95%" },
-  { src: "uploads/w13.jpg", alt: "Mia and Joe", focus: "center 88%" },
-  { src: "uploads/w14.jpg", alt: "Mia and Joe" },
-  { src: "uploads/w15.jpg", alt: "Mia and Joe" },
-  { src: "uploads/w16.jpg", alt: "Mia and Joe", focus: "center 55%" }
+  { src: "../uploads/1.jpg", alt: "Mia and Joe", focus: "center 78%" },
+  { src: "../uploads/2.jpg", alt: "Mia and Joe", focus: "center 25%" },
+  { src: "../uploads/3.jpg", alt: "Mia and Joe", focus: "center 78%" },
+  { src: "../uploads/4.jpg", alt: "Mia and Joe" },
+  { src: "../uploads/5.jpg", alt: "Mia and Joe", focus: "center 100%" },
+  { src: "../uploads/6.jpg", alt: "Mia and Joe", focus: "center 25%" },
+  { src: "../uploads/7.jpg", alt: "Mia and Joe", focus: "center 78%" },
+  { src: "../uploads/8.jpg", alt: "Mia and Joe" },
+  { src: "../uploads/w9.jpg", alt: "Mia and Joe" },
+  { src: "../uploads/w10.jpg", alt: "Mia and Joe" },
+  { src: "../uploads/w11.jpg", alt: "Mia and Joe" },
+  { src: "../uploads/w12.jpg", alt: "Mia and Joe", focus: "center 95%" },
+  { src: "../uploads/w13.jpg", alt: "Mia and Joe", focus: "center 88%" },
+  { src: "../uploads/w14.jpg", alt: "Mia and Joe" },
+  { src: "../uploads/w15.jpg", alt: "Mia and Joe" },
+  { src: "../uploads/w16.jpg", alt: "Mia and Joe", focus: "center 55%" }
 ];
 
 function Gallery() {
@@ -453,11 +453,11 @@ function Gallery() {
 // The Big Day
 // ─────────────────────────────────────────────────────────────
 const SCHEDULE_ILLUSTRATIONS = {
-  reception: "uploads/Reception.png",
-  ceremony: "uploads/Ceremony.png",
-  cocktail: "uploads/Cocktail-Hour.png",
-  dinner: "uploads/Dinner.png",
-  afterparty: "uploads/After-Hours.png"
+  reception: "../uploads/Reception.png",
+  ceremony: "../uploads/Ceremony.png",
+  cocktail: "../uploads/Cocktail-Hour.png",
+  dinner: "../uploads/Dinner.png",
+  afterparty: "../uploads/After-Hours.png"
 };
 
 function TheBigDay({ data }) {
@@ -522,7 +522,7 @@ function TheBigDay({ data }) {
             </p>
           </figcaption>
           <a href="https://www.theestateyountville.com/" target="_blank" rel="noreferrer" className="venue-img-wrap">
-            <img src="uploads/The-Estate-Yountville.jpg" alt="The Estate Yountville" className="venue-img" />
+            <img src="../uploads/The-Estate-Yountville.jpg" alt="The Estate Yountville" className="venue-img" />
           </a>
         </figure>
 
@@ -719,7 +719,7 @@ function Registry() {
         <p className="body-lg" style={{ color: "rgba(252,247,242,0.85)", maxWidth: 780, margin: "32px auto 0", textAlign: "center", lineHeight: "1.35", fontSize: "18px", width: "auto", fontWeight: 300, fontStyle: "italic" }}>{renderDesc(t.registryBody)}</p>
 
         <div className="registry-card-row">
-          <img src="uploads/Funding-1.png" alt="" className="registry-illo registry-illo-left" />
+          <img src="../uploads/Funding-1.png" alt="" className="registry-illo registry-illo-left" />
           <div className="registry-card" style={{ margin: "0px" }}>
             <div className="eyebrow-sm" style={{ color: "rgba(252,247,242,0.6)", letterSpacing: "0px", fontFamily: "\"Sohne Breit\"" }}>
 
@@ -730,7 +730,7 @@ function Registry() {
               {t.registryButton}
             </a>
           </div>
-          <img src="uploads/Funding-2.png" alt="" className="registry-illo registry-illo-right" />
+          <img src="../uploads/Funding-2.png" alt="" className="registry-illo registry-illo-right" />
         </div>
       </div>
     </section>);
@@ -995,7 +995,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-headline" style={{ fontFamily: "\"PP Editorial New\"", fontStyle: "italic", lineHeight: "1.1", fontWeight: "300", padding: "0px", textAlign: "center" }}>{t.footerHeadline}</div>
-      <img src="uploads/Heart.png" alt="" className="footer-hearts" style={{ margin: "26px auto -60px" }} />
+      <img src="../uploads/Heart.png" alt="" className="footer-hearts" style={{ margin: "26px auto -60px" }} />
       <div className="footer-credit" style={{ letterSpacing: "0px", fontSize: "14px" }}>Made with love · miaandjoewedding.com</div>
     </footer>);
 
@@ -1056,8 +1056,8 @@ const WEDDING_DATA_KO = {
     {
       "name": "Napa Valley Railway Inn",
       "url": "https://www.napavalleyrailwayinn.com/",
-      "img": "uploads/Railroad-Inn.png",
-      "img": "uploads/Railroad-Inn.png",
+      "img": "../uploads/Railroad-Inn.png",
+      "img": "../uploads/Railroad-Inn.png",
       "stars": "4.4",
       "distance": "도보 3분",
       "desc": "100년 된 기차 객차를 개조한 객실과 공간으로, 욘트빌 중심부에 위치하며 예식장까지 걸어서 이동하실 수 있습니다."
@@ -1067,8 +1067,8 @@ const WEDDING_DATA_KO = {
     {
       "name": "Senza Hotel",
       "url": "https://senzahotel.com/?utm_source=local&utm_medium=organic&utm_campaign=websitelink",
-      "img": "uploads/Senza.png",
-      "img": "uploads/Senza.png",
+      "img": "../uploads/Senza.png",
+      "img": "../uploads/Senza.png",
       "stars": "4.5",
       "distance": "차로 약 10분",
       "desc": "포도밭 사이에 자리한 고요한 부티크 호텔로, 욘트빌과 나파 다운타운의 중간에 위치해 있습니다."
@@ -1076,8 +1076,8 @@ const WEDDING_DATA_KO = {
     {
       "name": "Hotel Indigo Napa Valley",
       "url": "https://www.ihg.com/hotelindigo/hotels/us/en/napa-california/sfonv/hoteldetail",
-      "img": "uploads/Hotel-Indigo.png",
-      "img": "uploads/Hotel-Indigo.png",
+      "img": "../uploads/Hotel-Indigo.png",
+      "img": "../uploads/Hotel-Indigo.png",
       "stars": "4.1",
       "distance": "차로 약 15분",
       "desc": "모던한 체인 호텔로, 나파 다운타운 인근에 위치하며 Oxbow Public Market과 Napa Wine Train이 가깝습니다."
@@ -1085,8 +1085,8 @@ const WEDDING_DATA_KO = {
     {
       "name": "R Inn Napa",
       "url": "https://www.rinnnapa.com/",
-      "img": "uploads/R-Inn-Napa-1.png",
-      "img": "uploads/R-Inn-Napa-1.png",
+      "img": "../uploads/R-Inn-Napa-1.png",
+      "img": "../uploads/R-Inn-Napa-1.png",
       "stars": "4.7",
       "distance": "차로 약 15분",
       "desc": "역사적인 건물을 개조한 세련된 성인 전용 부티크 호텔로, 나파 다운타운 중심부에 위치합니다. 레스토랑과 와인 테이스팅룸, 인근 바까지 걸어서 이동하실 수 있습니다."
@@ -1220,7 +1220,7 @@ function InvitationIntro() {
     <div className={"invite-intro" + (phase === "fade" ? " fade" : "")} aria-hidden="true">
       <div className="invite-caption" style={{ fontFamily: '"Anonymous Pro", ui-monospace, monospace' }}>{t.invited}</div>
       <div className="invite-card-wrap">
-        <img src="uploads/invite-card.jpg" alt="" className="invite-card-img" />
+        <img src="../uploads/invite-card.jpg" alt="" className="invite-card-img" />
       </div>
     </div>);
 
