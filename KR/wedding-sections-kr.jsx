@@ -80,9 +80,9 @@ const STRINGS = {
     navStory: "Our Story", navBigDay: "The Big Day", navTravel: "Travel & Stay", navThings: "Things to Do", navRegistry: "Registry", navFaqs: "FAQs",
     labelYountville: "욘트빌", labelNapa: "나파",
     story: [
-      "저희는 작년 7월 7일, 견우와 직녀가 오작교에서 만난 칠석날 처음 만났습니다. Mia는 체리와 크래커를,\nJoe는 가장 좋아하는 나파 카베르네인 Duckhorn을 가져왔어요. 나중에서야 Duckhorn이 한국에서\n변치 않는 평생의 사랑을 상징하는 원앙에을 의미한다는 것을 알게 되었습니다.",
+      "저희는 작년 7월 7일, 견우와 직녀가 오작교에서 만나는 칠석날 처음 만났습니다. Mia는 체리와 크래커를,\nJoe는 가장 좋아하는 나파 카베르네인 Duckhorn을 가져왔어요. 나중에서야 Duckhorn이 한국에서\n변치 않는 평생의 사랑을 상징하는 원앙을 의미한다는 것을 알게 되었습니다.",
       "우연은 거기서 그치지 않았어요. 몇 주 뒤, Joe가 Mia의 이사를 도와주러 \"412\"가 적힌 모자를 쓰고\n나타났습니다. 그 숫자는 둘이 지금 살고 있는 피츠버그의 지역번호이기도 하지만, 4월 12일, Mia의\n생일이기도 했죠. 그때부터 둘은 이 만남이 단순한 우연이 아닌, 운명이라는 느낌을 받기 시작했습니다.",
-      "그 후로 우리는 함께 요리를 하고, 골프장에서 느긋한 오후를 보내고, 근교인 Lake Erie부터,\nIceland와 Taiwan으로 더 큰 모험을 떠났습니다. 돌이켜보면, 그 어느 순간도 결코 사소하지 않았어요.",
+      "그 후로 저희는 함께 요리를 하고, 골프장에서 느긋한 오후를 보내고, 근교인 Lake Erie부터,\nIceland와 Taiwan으로 더 큰 모험을 떠났습니다. 돌이켜보면, 그 어느 순간도 결코 사소하지 않았어요.",
       "2026년 10월 10일, 저희는 나파 밸리에서 인생의 새로운 막을 시작하려 합니다. 서로 다른 세계에서\n자라온 저희는, 두 세계를 소중히 간직하며 우리만의 것들을 함께 만들어나가고 싶습니다.\n그 자리에 여러분이 함께해 주시면 더없이 기쁘겠습니다."
     ],
     galleryLabel: "Gallery",
@@ -100,7 +100,7 @@ const STRINGS = {
     ],
     travelParagraph: "나파 밸리를 여유롭게 둘러보시려면 렌터카를 추천드립니다. 차량으로 약 1시간 30분 떨어진\n샌프란시스코 국제공항(SFO)에서 Hertz를 비롯한 대부분의 주요 렌터카 업체를 이용할 수 있습니다.",
     hotelMeta: (stars, distance) => `구글 리뷰 ${stars} · 예식장에서 ${distance}`,
-    thingsIntro1: "저희는 사랑하는 분들, 특히 먼 길을 와 주시는 분들께 작은 휴가처럼 느껴지는 결혼식 주말을\n선물해 드리고 싶어 나파 밸리를 선택했습니다. 결혼식뿐만 아니라, 나파밸리가 선사하는\n숨 막히게 아름다운 포도밭 풍경을 여유롭게 즐기시길 바랍니다.",
+    thingsIntro1: "저희는 사랑하는 분들, 특히 먼 길을 와 주시는 분들께 작은 휴가처럼 느껴지는 결혼식 주말을\n선물해 드리고 싶어 나파 밸리를 선택했습니다. 결혼식뿐만 아니라, 나파 밸리가 선사하는\n숨 막히게 아름다운 포도밭 풍경을 여유롭게 즐기시길 바랍니다.",
     thingsIntro2: "아래의 장소들은 Mia와 Joe가 직접 방문하고 사랑했던 곳들이에요!",
     wineries: "와이너리",
     thingsClosing: "더 많은 추천이 필요하시면, Mia(jmink0412@gmail.com)에게 언제든 편하게 연락 주세요!",
@@ -174,7 +174,7 @@ function Monogram({ size = "mini", color }) {
   if (size === "mini") {
     return (
       <a href="#top" className="monogram-mini" aria-label="M&J — Home">
-        <img src="../uploads/Monogram.png" alt="M&J" className="monogram-mini-img" />
+        <img src="uploads/Monogram.png" alt="M&J" className="monogram-mini-img" />
       </a>);
 
   }
@@ -288,7 +288,7 @@ function Hero({ showCountdown = true }) {
   return (
     <section className="hero" id="top" data-screen-label="Hero">
       <div className="hero-names hero-names-image">
-        <img src="../uploads/Hero-Page.png" alt="The Wedding — Mia & Joe" className="hero-names-img" />
+        <img src="uploads/Hero-Page.png" alt="The Wedding — Mia & Joe" className="hero-names-img" />
       </div>
       <div className="hero-date" style={{ fontFamily: "\"PP Editorial New\"", fontSize: "30px", lineHeight: "1", fontWeight: "400", color: "rgb(5, 5, 5)" }}>{t.heroDate}</div>
       <div className="hero-location" style={{ letterSpacing: "0.5px", fontWeight: "400", color: "rgb(5, 5, 5)" }}>The Estate Yountville, Yountville, CA</div>
@@ -331,21 +331,21 @@ function OurStory() {
         <div className="story-film">
           <div className="film-strip-h film-strip-horiz">
             <div className="film-frames-h">
-              <div className="film-frame"><img src="../uploads/story-film-1.jpg" alt="Mia and Joe" /></div>
-              <div className="film-frame"><img src="../uploads/story-film-2.jpg" alt="Mia and Joe" /></div>
-              <div className="film-frame"><img src="../uploads/story-film-5.jpg" alt="Mia and Joe" /></div>
+              <div className="film-frame"><img src="uploads/story-film-1.jpg" alt="Mia and Joe" /></div>
+              <div className="film-frame"><img src="uploads/story-film-2.jpg" alt="Mia and Joe" /></div>
+              <div className="film-frame"><img src="uploads/story-film-5.jpg" alt="Mia and Joe" /></div>
             </div>
           </div>
           <div className="film-strip-v film-strip-vert">
             <div className="film-frames-v">
-              <div className="film-frame"><img src="../uploads/story-film-4.jpg" alt="Mia and Joe" /></div>
-              <div className="film-frame"><img src="../uploads/story-film-3.jpg" alt="Mia and Joe" /></div>
+              <div className="film-frame"><img src="uploads/story-film-4.jpg" alt="Mia and Joe" /></div>
+              <div className="film-frame"><img src="uploads/story-film-3.jpg" alt="Mia and Joe" /></div>
             </div>
           </div>
         </div>
         <Gallery />
         <div className="story-illustration">
-          <img src="../uploads/Duck.png" alt="" className="story-illustration-img" />
+          <img src="uploads/Duck.png" alt="" className="story-illustration-img" />
         </div>
       </div>
     </section>);
@@ -355,22 +355,22 @@ function OurStory() {
 // Gallery — 16 photo slots (4 × 4). Drop files into uploads/ and set src.
 // ─────────────────────────────────────────────────────────────
 const GALLERY_PHOTOS = [
-  { src: "../uploads/1.jpg", alt: "Mia and Joe", focus: "center 78%" },
-  { src: "../uploads/2.jpg", alt: "Mia and Joe", focus: "center 25%" },
-  { src: "../uploads/3.jpg", alt: "Mia and Joe", focus: "center 78%" },
-  { src: "../uploads/4.jpg", alt: "Mia and Joe" },
-  { src: "../uploads/5.jpg", alt: "Mia and Joe", focus: "center 100%" },
-  { src: "../uploads/6.jpg", alt: "Mia and Joe", focus: "center 25%" },
-  { src: "../uploads/7.jpg", alt: "Mia and Joe", focus: "center 78%" },
-  { src: "../uploads/8.jpg", alt: "Mia and Joe" },
-  { src: "../uploads/w9.jpg", alt: "Mia and Joe" },
-  { src: "../uploads/w10.jpg", alt: "Mia and Joe" },
-  { src: "../uploads/w11.jpg", alt: "Mia and Joe" },
-  { src: "../uploads/w12.jpg", alt: "Mia and Joe", focus: "center 95%" },
-  { src: "../uploads/w13.jpg", alt: "Mia and Joe", focus: "center 88%" },
-  { src: "../uploads/w14.jpg", alt: "Mia and Joe" },
-  { src: "../uploads/w15.jpg", alt: "Mia and Joe" },
-  { src: "../uploads/w16.jpg", alt: "Mia and Joe", focus: "center 55%" }
+  { src: "uploads/1.jpg", alt: "Mia and Joe", focus: "center 78%" },
+  { src: "uploads/2.jpg", alt: "Mia and Joe", focus: "center 25%" },
+  { src: "uploads/3.jpg", alt: "Mia and Joe", focus: "center 78%" },
+  { src: "uploads/4.jpg", alt: "Mia and Joe" },
+  { src: "uploads/5.jpg", alt: "Mia and Joe", focus: "center 100%" },
+  { src: "uploads/6.jpg", alt: "Mia and Joe", focus: "center 25%" },
+  { src: "uploads/7.jpg", alt: "Mia and Joe", focus: "center 78%" },
+  { src: "uploads/8.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w9.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w10.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w11.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w12.jpg", alt: "Mia and Joe", focus: "center 95%" },
+  { src: "uploads/w13.jpg", alt: "Mia and Joe", focus: "center 88%" },
+  { src: "uploads/w14.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w15.jpg", alt: "Mia and Joe" },
+  { src: "uploads/w16.jpg", alt: "Mia and Joe", focus: "center 55%" }
 ];
 
 function Gallery() {
@@ -453,11 +453,11 @@ function Gallery() {
 // The Big Day
 // ─────────────────────────────────────────────────────────────
 const SCHEDULE_ILLUSTRATIONS = {
-  reception: "../uploads/Reception.png",
-  ceremony: "../uploads/Ceremony.png",
-  cocktail: "../uploads/Cocktail-Hour.png",
-  dinner: "../uploads/Dinner.png",
-  afterparty: "../uploads/After-Hours.png"
+  reception: "uploads/Reception.png",
+  ceremony: "uploads/Ceremony.png",
+  cocktail: "uploads/Cocktail-Hour.png",
+  dinner: "uploads/Dinner.png",
+  afterparty: "uploads/After-Hours.png"
 };
 
 function TheBigDay({ data }) {
@@ -522,7 +522,7 @@ function TheBigDay({ data }) {
             </p>
           </figcaption>
           <a href="https://www.theestateyountville.com/" target="_blank" rel="noreferrer" className="venue-img-wrap">
-            <img src="../uploads/The-Estate-Yountville.jpg" alt="The Estate Yountville" className="venue-img" />
+            <img src="uploads/The-Estate-Yountville.jpg" alt="The Estate Yountville" className="venue-img" />
           </a>
         </figure>
 
@@ -588,7 +588,7 @@ function TheBigDay({ data }) {
         <div style={{ marginTop: 100 }}>
           <SectionHeader title="Attire" />
           <div className="attire-wrap" style={{ width: "620px" }}>
-            <p className="attire-text" style={{ fontSize: "20px", color: "#3D3C3A" }}>{t.attireTextPre}<br className="desktop-br" /> {t.attireTextPost}</p>
+            <p className="attire-text" style={{ fontSize: "20px", color: "#3D3C3A" }}>{t.attireTextPre}<br /> {t.attireTextPost}</p>
             <ul className="attire-list">
               {t.attireList.map((li, i) => <li key={i} style={{ color: "#6F6F6F", fontSize: "20px", lineHeight: "22px" }}>{li}</li>)}
             </ul>
@@ -719,7 +719,7 @@ function Registry() {
         <p className="body-lg" style={{ color: "rgba(252,247,242,0.85)", maxWidth: 780, margin: "32px auto 0", textAlign: "center", lineHeight: "1.35", fontSize: "18px", width: "auto", fontWeight: 300, fontStyle: "italic" }}>{renderDesc(t.registryBody)}</p>
 
         <div className="registry-card-row">
-          <img src="../uploads/Funding-1.png" alt="" className="registry-illo registry-illo-left" />
+          <img src="uploads/Funding-1.png" alt="" className="registry-illo registry-illo-left" />
           <div className="registry-card" style={{ margin: "0px" }}>
             <div className="eyebrow-sm" style={{ color: "rgba(252,247,242,0.6)", letterSpacing: "0px", fontFamily: "\"Sohne Breit\"" }}>
 
@@ -730,7 +730,7 @@ function Registry() {
               {t.registryButton}
             </a>
           </div>
-          <img src="../uploads/Funding-2.png" alt="" className="registry-illo registry-illo-right" />
+          <img src="uploads/Funding-2.png" alt="" className="registry-illo registry-illo-right" />
         </div>
       </div>
     </section>);
@@ -995,7 +995,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-headline" style={{ fontFamily: "\"PP Editorial New\"", fontStyle: "italic", lineHeight: "1.1", fontWeight: "300", padding: "0px", textAlign: "center" }}>{t.footerHeadline}</div>
-      <img src="../uploads/Heart.png" alt="" className="footer-hearts" style={{ margin: "26px auto -60px" }} />
+      <img src="uploads/Heart.png" alt="" className="footer-hearts" style={{ margin: "26px auto -60px" }} />
       <div className="footer-credit" style={{ letterSpacing: "0px", fontSize: "14px" }}>Made with love · miaandjoewedding.com</div>
     </footer>);
 
@@ -1056,8 +1056,8 @@ const WEDDING_DATA_KO = {
     {
       "name": "Napa Valley Railway Inn",
       "url": "https://www.napavalleyrailwayinn.com/",
-      "img": "../uploads/Railroad-Inn.png",
-      "img": "../uploads/Railroad-Inn.png",
+      "img": "uploads/Railroad-Inn.png",
+      "img": "uploads/Railroad-Inn.png",
       "stars": "4.4",
       "distance": "도보 3분",
       "desc": "100년 된 기차 객차를 개조한 객실과 공간으로, 욘트빌 중심부에 위치하며 예식장까지 걸어서 이동하실 수 있습니다."
@@ -1067,8 +1067,8 @@ const WEDDING_DATA_KO = {
     {
       "name": "Senza Hotel",
       "url": "https://senzahotel.com/?utm_source=local&utm_medium=organic&utm_campaign=websitelink",
-      "img": "../uploads/Senza.png",
-      "img": "../uploads/Senza.png",
+      "img": "uploads/Senza.png",
+      "img": "uploads/Senza.png",
       "stars": "4.5",
       "distance": "차로 약 10분",
       "desc": "포도밭 사이에 자리한 고요한 부티크 호텔로, 욘트빌과 나파 다운타운의 중간에 위치해 있습니다."
@@ -1076,8 +1076,8 @@ const WEDDING_DATA_KO = {
     {
       "name": "Hotel Indigo Napa Valley",
       "url": "https://www.ihg.com/hotelindigo/hotels/us/en/napa-california/sfonv/hoteldetail",
-      "img": "../uploads/Hotel-Indigo.png",
-      "img": "../uploads/Hotel-Indigo.png",
+      "img": "uploads/Hotel-Indigo.png",
+      "img": "uploads/Hotel-Indigo.png",
       "stars": "4.1",
       "distance": "차로 약 15분",
       "desc": "모던한 체인 호텔로, 나파 다운타운 인근에 위치하며 Oxbow Public Market과 Napa Wine Train이 가깝습니다."
@@ -1085,11 +1085,11 @@ const WEDDING_DATA_KO = {
     {
       "name": "R Inn Napa",
       "url": "https://www.rinnnapa.com/",
-      "img": "../uploads/R-Inn-Napa-1.png",
-      "img": "../uploads/R-Inn-Napa-1.png",
+      "img": "uploads/R-Inn-Napa-1.png",
+      "img": "uploads/R-Inn-Napa-1.png",
       "stars": "4.7",
       "distance": "차로 약 15분",
-      "desc": "역사적인 건물을 개조한 세련된 성인 전용 부티크 호텔로, 나파 다운타운 중심부에 위치합니다. 레스토랑과 와인 테이스팅룸, 인근 바 까지 걸어서 이동하실 수 있습니다."
+      "desc": "역사적인 건물을 개조한 세련된 성인 전용 부티크 호텔로, 나파 다운타운 중심부에 위치합니다. 레스토랑과 와인 테이스팅룸, 인근 바까지 걸어서 이동하실 수 있습니다."
     }
   ],
   "yountville_food": [
@@ -1111,15 +1111,15 @@ const WEDDING_DATA_KO = {
     { "name": "Oxbow Public Market", "url": "https://oxbowpublicmarket.com/", "desc": "현지 상인과 음식 가판대, 전문 상점들이 모인 활기찬 실내 마켓입니다. Mia가 가장 좋아하는 곳은 Hog Island 굴 가게예요. 클램 차우더와 굴 한 다스면 완벽한 오후가 완성됩니다." }
   ],
   "napa_wine": [
-    { "name": "Far Niente", "url": "https://farniente.com/visit-far-niente", "desc": "나파에서 가장 아름다운 정원 가운데 하나에서 보내는 낭만적이고 여유로운 오후를 위한 곳. 예약이 필요합니다." },
+    { "name": "Far Niente", "url": "https://farniente.com/visit-far-niente", "desc": "나파에서 가장 아름다운 정원 가운데 하나에서 보내는 낭만과 여유로운 오후를 위한 곳. 예약이 필요합니다." },
     { "name": "Silver Oak Napa Valley", "url": "https://silveroak.com/pages/visit-napa-valley", "desc": "클래식한 나파 카베르네 소비뇽을 경험하기 좋은 곳. 레드 와인 애호가라면 꼭 들러야 할 곳입니다." },
     { "name": "Quintessa / Opus One / Heitz Cellars", "links": [{"name": "Quintessa", "url": "https://www.quintessa.com/the-experience/"}, {"name": "Opus One", "url": "https://www.opusonewinery.com/plan-your-visit/"}, {"name": "Heitz Cellars", "url": "https://heitzcellar.com/visit/?srsltid=AfmBOoppm5VbF7sglW9_ZGmEscn-Dbs_easHv6p4_v3crKlDZuYhroUh"}], "desc": "나파 와인의 세계를 더 깊이 경험하고 싶은 분들을 위한 곳. 예약제로만 운영되는 테이스팅으로, 미리 계획할 가치가 충분합니다." },
-    { "name": "The Prisoner Wine Company", "url": "https://theprisonerwinecompany.com/pages/visit-us", "desc": "보다 편안한 분위기로, 예약 없이도 방문하기 좋습니다." }
+    { "name": "The Prisoner Wine Company", "url": "https://theprisonerwinecompany.com/pages/visit-us", "desc": "보다 편안한 분위기로, 예약 없이 방문하기 좋습니다." }
   ],
   "faqs": [
     { "q": "참석 여부는 언제까지 알려드려야 하나요?", "a": "8월 31일까지 회신해 주세요. 가능하시면 조금 일찍 알려주시면 감사하겠습니다!" },
     { "q": "예약된 호텔 객실이 있나요?", "a": "네! 단체 예약 객실이 마련되어 있습니다. ‘Travel & Stay(오시는 길 & 숙소)’ 섹션의 <a href=\"https://be.synxis.com/?Hotel=39954&Chain=30212&arrive=2026-10-09&depart=2026-10-11&adult=1&child=0&group=KYUNGTUNG26\" target=\"_blank\" rel=\"noreferrer\" class=\"faq-link\">링크</a>를 이용해 예약해 주세요." },
-    { "q": "동반인을 데려가도 되나요?", "a": "네! 다만 소규모로 진행되는 결혼식인 만큼, 8월 31일 회신 마감일에 임박해 동반인을 추가하시는 것은 어려울 수 있습니다. 너른 양해 부탁드려요!" },
+    { "q": "동반인을 데려가도 되나요?", "a": "네! 다만 소규모로 진행되는 결혼식인 만큼, 8월 31일 회신 마감일에 임박해 동반인을 추가하시는 것은 어려울 수 있습니다. 너그러운 양해 부탁드려요!" },
     { "q": "예식장에는 어떻게 가나요?", "a": "저희 예식장 The Estate Yountville은 6481 Washington St, Yountville, CA 94599에 위치하며, 샌프란시스코 국제공항(SFO)에서 약 1시간 30분 거리입니다. 나파 밸리를 이동하실 때는 렌터카를 추천드립니다." },
     { "q": "호텔과 예식장 사이를 오가는 셔틀이 있나요?", "a": "공식 셔틀은 없지만, 혼자 오셔서 이동 수단이 필요하시다면 Mia(jmink0412@gmail.com)에게 연락 주세요. 함께 방법을 찾아보겠습니다!" },
     { "q": "주차가 가능한가요?", "a": "네, 넉넉한 주차 공간과 발렛 서비스가 마련되어 있습니다. 주차가 필요하시면 조금 일찍 도착하실 수 있도록 계획해 주세요." },
@@ -1220,7 +1220,7 @@ function InvitationIntro() {
     <div className={"invite-intro" + (phase === "fade" ? " fade" : "")} aria-hidden="true">
       <div className="invite-caption" style={{ fontFamily: '"Anonymous Pro", ui-monospace, monospace' }}>{t.invited}</div>
       <div className="invite-card-wrap">
-        <img src="../uploads/invite-card.jpg" alt="" className="invite-card-img" />
+        <img src="uploads/invite-card.jpg" alt="" className="invite-card-img" />
       </div>
     </div>);
 
